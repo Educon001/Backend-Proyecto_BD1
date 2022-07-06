@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { Pool } from 'pg';
+import {Pool} from 'pg';
 
 const test = {
     user: process.env.DB_USER,
@@ -12,11 +12,9 @@ const test = {
 let pool: Pool;
 
 export const db = () => {
-    console.info(test);
     if (!pool) {
         pool = new Pool(test);
     }
-    console.info(pool)
     return pool;
 }
 

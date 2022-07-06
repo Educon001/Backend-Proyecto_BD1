@@ -1,13 +1,13 @@
-import express , {Request, Response} from 'express';
+import express, {Request, Response} from 'express';
+
 const cors = require("cors");
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.get("/:numero", (req, res) => {
+app.get("/", (req, res) => {
     res.send("gay");
-    console.log(req.params.numero);
 });
 
 const PORT = process.env.PORT || 4000;
