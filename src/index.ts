@@ -1,23 +1,23 @@
 import express, {Request, Response} from 'express';
+import cors from 'cors';
+import {router as personaRoutes} from './Routes/PersonasR';
 
-const cors = require("cors");
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-    res.send("gay");
+app.get('/', (req, res) => {
+  res.send('MARICO EL QUE LO LEA');
 });
 
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
-    console.log(`app started on port ${PORT}`)
+  console.log(`app started on port ${PORT}`);
 });
 
 //import the routes
-const personaRoutes = require('./Routes/PersonasR');
 
 //configure the app.
-app.use(personaRoutes);
+app.use('/personas', personaRoutes);
