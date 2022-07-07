@@ -1,6 +1,6 @@
 export class Persona {
   constructor(
-      public ID: string,
+      public id: string,
       public name: string,
       public lastName: string,
       public sex: string,

@@ -22,11 +22,11 @@ export async function createPersona(req: Request, res: Response) {
       req.body.sex, new Date(req.body.birthdate),
       req.body.highRisk);
   try {
-    console.time(`Inserted person with id ${p.ID}`);
+    console.time(`Inserted person with id ${p.id}`);
     await db().
         query('INSERT INTO Persona VALUES ($1, $2, $3, $4, $5, $6)',
-            [p.ID, p.name, p.lastName, p.sex, p.birthdate, p.highRisk]);
-    console.timeEnd(`Inserted person with id ${p.ID}`);
+            [p.id, p.name, p.lastName, p.sex, p.birthdate, p.highRisk]);
+    console.timeEnd(`Inserted person with id ${p.id}`);
     return res.json(p);
   } catch (e) {
     console.error(e);
@@ -47,7 +47,7 @@ export async function updatePersona(req: Request, res: Response) {
                           Birthdate=$5,
                           HighRisk=$6
                       WHERE id = $1`,
-        [p.ID, p.name, p.lastName, p.sex, p.birthdate, p.highRisk]);
+        [p.id, p.name, p.lastName, p.sex, p.birthdate, p.highRisk]);
     return res.json(p);
   } catch (e) {
     console.error(e);

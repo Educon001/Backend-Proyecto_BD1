@@ -4,7 +4,7 @@ export class CentroSalud {
       public name: string,
       public address: string,
       public codeMunicipio: number,
-      public managerDate: string,
+      public managerDate: Date,
   ) {
   }
 }
