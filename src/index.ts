@@ -3,6 +3,9 @@ import cors from 'cors';
 import {router as personaRoutes} from './Routes/PersonasR';
 import {router as cvRoutes} from './Routes/CentroVacunacionR';
 import {router as chRoutes} from './Routes/CentroHospitalizacionR';
+import {router as paisRoutes} from './Routes/PaisR';
+import {router as estadoRoutes} from './Routes/EstadoR';
+import {router as municipioRoutes} from './Routes/MunicipioR';
 
 const app = express();
 
@@ -10,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('MARICO EL QUE LO LEA');
+  res.send('TEST');
 });
 
 const PORT = process.env.PORT || 4000;
@@ -23,3 +26,6 @@ app.listen(PORT, () => {
 app.use('/personas', personaRoutes);
 app.use('/cv', cvRoutes);
 app.use('/ch', chRoutes);
+app.use('/pais', paisRoutes);
+app.use('/estado', estadoRoutes);
+app.use('/municipio', municipioRoutes);
