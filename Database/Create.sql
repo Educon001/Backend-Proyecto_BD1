@@ -42,7 +42,8 @@ CREATE TABLE Persona(
     CONSTRAINT Persona_pk PRIMARY KEY (ID),
     CONSTRAINT Persona_sex_check CHECK(Sex IN ('M','F','N/A')),
     CONSTRAINT Persona_Name_check CHECK(Name NOT SIMILAR TO '%[0-9]%'),
-    CONSTRAINT Persona_LastName_check CHECK(LastName NOT SIMILAR TO '%[0-9]%')
+    CONSTRAINT Persona_LastName_check CHECK(LastName NOT SIMILAR TO '%[0-9]%'),
+    CONSTRAINT Persona_Cedula_check CHECK (ID ~* '^[VE]{1}[0-9]+$')
 );
 
 CREATE TABLE Paciente(
