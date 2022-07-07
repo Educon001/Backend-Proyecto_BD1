@@ -18,9 +18,9 @@ export async function getPersonas(req: Request, res: Response) {
 //Crear persona.
 export async function createPersona(req: Request, res: Response) {
   console.info('Attempting to create person with input', req.body);
-  let p = new Persona(req.body.ID, req.body.name, req.body.lastName,
+  let p = new Persona(req.body.id, req.body.name, req.body.lastname,
       req.body.sex, new Date(req.body.birthdate),
-      req.body.highRisk);
+      req.body.highrisk);
   try {
     console.time(`Inserted person with id ${p.id}`);
     await db().
@@ -37,8 +37,8 @@ export async function createPersona(req: Request, res: Response) {
 //Actualizar persona
 export async function updatePersona(req: Request, res: Response) {
   let {personaId} = req.params;
-  let p = new Persona(personaId, req.body.name, req.body.lastName,
-      req.body.sex, new Date(req.body.birthdate), req.body.highRisk);
+  let p = new Persona(personaId, req.body.name, req.body.lastname,
+      req.body.sex, new Date(req.body.birthdate), req.body.highrisk);
   try {
     await db().query(`UPDATE Persona
                       SET Name=$2,
