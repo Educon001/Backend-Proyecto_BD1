@@ -1,6 +1,8 @@
 import express, {Request, Response} from 'express';
 import cors from 'cors';
 import {router as personaRoutes} from './Routes/PersonasR';
+import {router as cvRoutes} from './Routes/CentroVacunacionR';
+import {router as chRoutes} from './Routes/CentroHospitalizacionR';
 
 const app = express();
 
@@ -17,7 +19,7 @@ app.listen(PORT, () => {
   console.log(`app started on port ${PORT}`);
 });
 
-//import the routes
-
 //configure the app.
 app.use('/personas', personaRoutes);
+app.use('/cv', cvRoutes);
+app.use('/ch', chRoutes);

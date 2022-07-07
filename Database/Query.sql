@@ -1,7 +1,7 @@
 /*Mostrar nombre y ubicacion( nombre del municipio) de los centros de
   salud con mas personas de sexo masculino vacunadas con tipo "ARNm"*/
 
-SELECT CS.Name, M.Name
+SELECT CS.Name AS Centro_Salud, M.Name AS Municipio
 FROM Centro_Salud CS
          JOIN Municipio M ON (CS.code_municipio=M.code)
 WHERE CS.code IN (
@@ -25,7 +25,7 @@ WHERE CS.code IN (
 );
 
 
-
+INSERT INTO vacunada VALUES ('V29554823',1,3,'V19553824','2022-07-06',1);
 
 
 

@@ -86,7 +86,7 @@ CREATE TABLE Medico(
 CREATE TABLE Centro_Salud(
     Code SERIAL,
     Name VARCHAR(50) NOT NULL ,
-    Adress TEXT,
+    Address TEXT,
     ID_Medico VARCHAR(10),
     Code_Municipio INT ,
     Manager_Date DATE,
