@@ -2,22 +2,22 @@
 origen y la eficacia de las vacunas para la variante.
 */
 
-INSERT INTO pais VALUES (1, 'Venezuela');
-INSERT INTO pais VALUES (2, 'Colombia');
-INSERT INTO pais VALUES (3, 'Ecuador');
-INSERT INTO pais VALUES (4, 'Perú');
-INSERT INTO pais VALUES (5, 'Argentina');
-INSERT INTO pais VALUES (6, 'Brasil');
-INSERT INTO pais VALUES (7, 'Mexico');
-INSERT INTO pais VALUES (8, 'Estados Unidos');
-INSERT INTO pais VALUES (9, 'Canadá');
-INSERT INTO pais VALUES (10, 'España');
-INSERT INTO pais VALUES (11, 'Alemania');
-INSERT INTO pais VALUES (12, 'Francia');
-INSERT INTO pais VALUES (13, 'China');
-INSERT INTO pais VALUES (14, 'Holanda');
-INSERT INTO pais VALUES (15, 'India');
-INSERT INTO pais VALUES (16, 'Inglaterra');
+INSERT INTO pais VALUES (default, 'Venezuela');
+INSERT INTO pais VALUES (default, 'Colombia');
+INSERT INTO pais VALUES (default, 'Ecuador');
+INSERT INTO pais VALUES (default, 'Perú');
+INSERT INTO pais VALUES (default, 'Argentina');
+INSERT INTO pais VALUES (default, 'Brasil');
+INSERT INTO pais VALUES (default, 'Mexico');
+INSERT INTO pais VALUES (default, 'Estados Unidos');
+INSERT INTO pais VALUES (default, 'Canadá');
+INSERT INTO pais VALUES (default, 'España');
+INSERT INTO pais VALUES (default, 'Alemania');
+INSERT INTO pais VALUES (default, 'Francia');
+INSERT INTO pais VALUES (default, 'China');
+INSERT INTO pais VALUES (default, 'Holanda');
+INSERT INTO pais VALUES (default, 'India');
+INSERT INTO pais VALUES (default, 'Inglaterra');
 ----------------------------------
 INSERT INTO virus_variante VALUES ('Alpha', 'B.1.1.7',2019, 5, 'VOC',1 );
 INSERT INTO virus_variante VALUES ('Beta', 'B.1.35', 2020, 8, 'VOI',7);
@@ -28,41 +28,41 @@ INSERT INTO virus_variante VALUES ('Gamma', 'P.1', 2021, 2, 'VUM',13);
 /*
 B. Se debe almacenar por lo menos 5 estados con 5 municipios cada uno.
 */
-INSERT INTO estado_provincia VALUES (1, 'Caracas', 1);
-INSERT INTO municipio VALUES (1, 'Libertador', 1);
-INSERT INTO municipio VALUES (2, 'Sucre', 1);
-INSERT INTO municipio VALUES (3, 'El Hatillo', 1);
-INSERT INTO municipio VALUES (4, 'Baruta', 1);
-INSERT INTO municipio VALUES (5, 'Chacao', 1);
+INSERT INTO estado_provincia VALUES (default, 'Caracas', 1);
+INSERT INTO municipio VALUES (default, 'Libertador', 1);
+INSERT INTO municipio VALUES (default, 'Sucre', 1);
+INSERT INTO municipio VALUES (default, 'El Hatillo', 1);
+INSERT INTO municipio VALUES (default, 'Baruta', 1);
+INSERT INTO municipio VALUES (default, 'Chacao', 1);
 -----------
 
-INSERT INTO estado_provincia VALUES (2, 'Bogotá',2);
-INSERT INTO municipio VALUES (6, 'Soacha', 2);
-INSERT INTO municipio VALUES (7, 'Mosquera', 2);
-INSERT INTO municipio VALUES (8, 'Cota', 2);
-INSERT INTO municipio VALUES (9, 'El Rosal', 2);
-INSERT INTO municipio VALUES (10, 'Tabio', 2);
+INSERT INTO estado_provincia VALUES (default, 'Bogotá',2);
+INSERT INTO municipio VALUES (default, 'Soacha', 2);
+INSERT INTO municipio VALUES (default, 'Mosquera', 2);
+INSERT INTO municipio VALUES (default, 'Cota', 2);
+INSERT INTO municipio VALUES (default, 'El Rosal', 2);
+INSERT INTO municipio VALUES (default, 'Tabio', 2);
 ---------------------
-INSERT INTO estado_provincia VALUES (3, 'Quito',3);
-INSERT INTO municipio VALUES (11, 'Nayón', 3);
-INSERT INTO municipio VALUES (12, 'Zámbiza', 3);
-INSERT INTO municipio VALUES (13, 'Puéllaro', 3);
-INSERT INTO municipio VALUES (14, 'Chavezpamba', 3);
-INSERT INTO municipio VALUES (15, 'Atahualpa', 3);
+INSERT INTO estado_provincia VALUES (default, 'Quito',3);
+INSERT INTO municipio VALUES (default, 'Nayón', 3);
+INSERT INTO municipio VALUES (default, 'Zámbiza', 3);
+INSERT INTO municipio VALUES (default, 'Puéllaro', 3);
+INSERT INTO municipio VALUES (default, 'Chavezpamba', 3);
+INSERT INTO municipio VALUES (default, 'Atahualpa', 3);
 -----------
-INSERT INTO estado_provincia VALUES (4, 'Buenos Aires',5);
-INSERT INTO municipio VALUES (16, 'Bolívar', 4);
-INSERT INTO municipio VALUES (17, 'Colón', 4);
-INSERT INTO municipio VALUES (18, 'Dolores', 4);
-INSERT INTO municipio VALUES (19, 'Mercedes', 4);
-INSERT INTO municipio VALUES (20, 'Mar Chiquita', 4);
+INSERT INTO estado_provincia VALUES (default, 'Buenos Aires',5);
+INSERT INTO municipio VALUES (default, 'Bolívar', 4);
+INSERT INTO municipio VALUES (default, 'Colón', 4);
+INSERT INTO municipio VALUES (default, 'Dolores', 4);
+INSERT INTO municipio VALUES (default, 'Mercedes', 4);
+INSERT INTO municipio VALUES (default, 'Mar Chiquita', 4);
 ----------------
-INSERT INTO estado_provincia VALUES (5, 'New York',8);
-INSERT INTO municipio VALUES (21, 'Bronx', 5);
-INSERT INTO municipio VALUES (22, 'Brooklyn', 5);
-INSERT INTO municipio VALUES (23, 'Manhattan', 5);
-INSERT INTO municipio VALUES (24, 'Queens', 5);
-INSERT INTO municipio VALUES (25, 'Staten Island', 5);
+INSERT INTO estado_provincia VALUES (default, 'New York',8);
+INSERT INTO municipio VALUES (default, 'Bronx', 5);
+INSERT INTO municipio VALUES (default, 'Brooklyn', 5);
+INSERT INTO municipio VALUES (default, 'Manhattan', 5);
+INSERT INTO municipio VALUES (default, 'Queens', 5);
+INSERT INTO municipio VALUES (default, 'Staten Island', 5);
 --------------------------
 
 /*
@@ -122,11 +122,11 @@ E. Se deben almacenar 5 centro de salud con su ubicación, dos (2) deben ser de
 hospitalización y dos (2) de vacunación.
 */
 
-INSERT INTO centro_salud VALUES (1,'Centro de Salud de Caracas', 'Av Caracas, en Caracas', 'V19553823', 1,'2019-10-02');
-INSERT INTO centro_salud VALUES (2,'Centro HealthClick', 'Av Vollmer, frente a Galerias Avila', 'V19553824', 2,'2019-12-02');
-INSERT INTO centro_salud VALUES (3,'Centro FeelBetter', 'Av Brookling, calle el hambre', 'V18553324', 22,'2020-04-02');
-INSERT INTO centro_salud VALUES (4,'Clinicas Caracas', 'Av Caracas, en Caracas', 'V17553823', 3, '2020-10-02');
-INSERT INTO centro_salud VALUES (5,'Centro Clinico Razeti', 'Av Caracas, detras del centro comercial Parque Caracas', 'V16553823', 4, '2021-10-02');
+INSERT INTO centro_salud VALUES (default,'Centro de Salud de Caracas', 'Av Caracas, en Caracas', 'V19553823', 1,'2019-10-02');
+INSERT INTO centro_salud VALUES (default,'Centro HealthClick', 'Av Vollmer, frente a Galerias Avila', 'V19553824', 2,'2019-12-02');
+INSERT INTO centro_salud VALUES (default,'Centro FeelBetter', 'Av Brookling, calle el hambre', 'V18553324', 22,'2020-04-02');
+INSERT INTO centro_salud VALUES (default,'Clinicas Caracas', 'Av Caracas, en Caracas', 'V17553823', 3, '2020-10-02');
+INSERT INTO centro_salud VALUES (default,'Centro Clinico Razeti', 'Av Caracas, detras del centro comercial Parque Caracas', 'V16553823', 4, '2021-10-02');
 ----------------------------------
 INSERT INTO centro_hospitalizacion VALUES (1);
 INSERT INTO centro_hospitalizacion VALUES (2);
@@ -136,6 +136,10 @@ INSERT INTO centro_vacunacion VALUES (4);
 INSERT INTO centro_vacunacion VALUES (5);
 
 
-INSERT INTO vacuna VALUES (1,'Comirnaty',1, 3,'ARNm', 'Pfizer-BioNTech',11);
-INSERT INTO vacuna VALUES (2,'AstraZeneca',7, 3,'Vector viral', 'University of Oxford',16);
-INSERT INTO vacuna VALUES (3,'Spikevax',12, 3,'Subunidades proteicas', 'Moderna',15);
+INSERT INTO vacuna VALUES (default,'Comirnaty',1, 3,'ARNm', 'Pfizer-BioNTech',11);
+INSERT INTO vacuna VALUES (default,'AstraZeneca',7, 3,'Vector viral', 'University of Oxford',16);
+INSERT INTO vacuna VALUES (default,'Spikevax',12, 3,'Subunidades proteicas', 'Moderna',15);
+
+INSERT INTO vacunada VALUES ('V29554823',1,3,'V19553824','2022-05-06',1);
+INSERT INTO vacunada VALUES ('V23553823',1,5,'V17553823','2022-05-13',1);
+INSERT INTO vacunada VALUES ('V29554823',1,5,'V17553823','2022-06-06',2);

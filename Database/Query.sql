@@ -25,7 +25,4 @@ WHERE CS.code IN (
 );
 
 
-INSERT INTO vacunada VALUES ('V29554823',1,3,'V19553824','2022-07-06',1);
-
-
 
