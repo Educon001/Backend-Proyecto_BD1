@@ -133,6 +133,7 @@ INSERT INTO centro_hospitalizacion VALUES (2);
 ----
 INSERT INTO centro_vacunacion VALUES (3);
 INSERT INTO centro_vacunacion VALUES (4);
+INSERT INTO centro_vacunacion VALUES (5);
 
 
 INSERT INTO vacuna VALUES (1,'Comirnaty',1, 3,'ARNm', 'Pfizer-BioNTech',11);
