@@ -27,16 +27,6 @@ INSERT INTO virus_variante VALUES ('Gamma', 'P.1', 2021, 2, 'VUM',13);
 
 /*
 B. Se debe almacenar por lo menos 5 estados con 5 municipios cada uno.
-CREATE TABLE Municipio(
-    Code SERIAL,
-    Name VARCHAR(60) NOT NULL,
-    CodeEstado SMALLINT NOT NULL,
-    CONSTRAINT Municipio_pk PRIMARY KEY (Code),
-    CONSTRAINT Municipio_EstadoProvincia_FK FOREIGN KEY (CodeEstado) REFERENCES Estado_Provincia(Code)
-    Code SERIAL,
-    Name VARCHAR(60) NOT NULL ,
-    CodePais SMALLINT NOT NULL ,
-);
 */
 INSERT INTO estado_provincia VALUES (1, 'Caracas', 1);
 INSERT INTO municipio VALUES (1, 'Libertador', 1);
@@ -77,74 +67,66 @@ INSERT INTO municipio VALUES (25, 'Staten Island', 5);
 
 /*
 C. Se tiene información de al menos 10 pacientes.
-ID VARCHAR(10),
-    Name VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,
-    Sex VARCHAR(3) NOT NULL,
-    Birthdate DATE_RANGE,
-    HighRisk BOOLEAN,*/
-INSERT INTO persona VALUES ('29554823','Juan','Perez','M','1998-10-12');
-INSERT INTO persona VALUES ('29555823','Jose','Gorduñez','F','2000-10-12');
-INSERT INTO persona VALUES ('29585647','Maria','Perez','F','1975-10-12');
-INSERT INTO persona VALUES ('29558989','Engrudo','Consalvo','M','2001-10-12');
-INSERT INTO persona VALUES ('28553829','Shakira','Samina','F','1998-10-12');
-INSERT INTO persona VALUES ('25553823','Daniela','Rodriguez','F','1998-10-12');
-INSERT INTO persona VALUES ('23553823','Alexandra','Gonzales','F','1998-10-17');
-INSERT INTO persona VALUES ('22553825','Juana','Cubana','F','1998-10-18');
-INSERT INTO persona VALUES ('25553826','Marco','Fidel','M','1998-10-14');
-INSERT INTO persona VALUES ('21553827','Hitler','Nuñez','M','1901-10-12');--------pacientes hasta aquí
-INSERT INTO persona VALUES ('19553823','Jian','Achú','M','1998-10-12');
-INSERT INTO persona VALUES ('19553824','Pedro','CasaBlanca','M','1970-10-12');
-INSERT INTO persona VALUES ('18553324','Steiker','Mora','M','2002-10-12');
-INSERT INTO persona VALUES ('17553823','Rodrigo','Perez','N/A','1997-10-12');
-INSERT INTO persona VALUES ('16553823','Camila','Torres','M','1995-11-12');
-INSERT INTO persona VALUES ('15553823','Jesus','Ferran','N/A','1992-10-12');
-INSERT INTO persona VALUES ('14553823','Marie','Curie','F','1998-10-12');
-INSERT INTO persona VALUES ('13553823','Lana','Roades','F','1980-10-01');
+*/
+
+INSERT INTO persona VALUES ('V29554823','Juan','Perez','M','1998-10-12');
+INSERT INTO persona VALUES ('V29555823','Jose','Nuñez','F','2000-10-12');
+INSERT INTO persona VALUES ('V29585647','Maria','Perez','F','1975-10-12');
+INSERT INTO persona VALUES ('V29558989','Eduardo','Consalvo','M','2001-10-12');
+INSERT INTO persona VALUES ('V28553829','Shakira','Samina','F','1998-10-12');
+INSERT INTO persona VALUES ('V25553823','Daniela','Rodriguez','F','1998-10-12');
+INSERT INTO persona VALUES ('V23553823','Alexandra','Gonzales','F','1998-10-17');
+INSERT INTO persona VALUES ('V22553825','Juana','Cubana','F','1998-10-18');
+INSERT INTO persona VALUES ('V25553826','Marco','Fidel','M','1998-10-14');
+INSERT INTO persona VALUES ('V21553827','Andres','Gonzalez','M','1901-10-12');--------pacientes hasta aquí
+INSERT INTO persona VALUES ('V19553823','Jian','Achú','M','1998-10-12');
+INSERT INTO persona VALUES ('V19553824','Pedro','CasaBlanca','M','1970-10-12');
+INSERT INTO persona VALUES ('V18553324','Steiker','Mora','M','2002-10-12');
+INSERT INTO persona VALUES ('V17553823','Rodrigo','Perez','N/A','1997-10-12');
+INSERT INTO persona VALUES ('V16553823','Camila','Torres','M','1995-11-12');
+INSERT INTO persona VALUES ('V15553823','Jesus','Ferran','N/A','1992-10-12');
+INSERT INTO persona VALUES ('V14553823','Marie','Curie','F','1998-10-12');
+INSERT INTO persona VALUES ('E13553823','Lana','Roberts','F','1980-10-01');
 ------
-INSERT INTO paciente VALUES ('29554823');
-INSERT INTO paciente VALUES ('29555823');
-INSERT INTO paciente VALUES ('29585647');
-INSERT INTO paciente VALUES ('29558989');
-INSERT INTO paciente VALUES ('28553829');
-INSERT INTO paciente VALUES ('25553823');
-INSERT INTO paciente VALUES ('23553823');
-INSERT INTO paciente VALUES ('22553825');
-INSERT INTO paciente VALUES ('25553826');
-INSERT INTO paciente VALUES ('21553827');
+INSERT INTO paciente VALUES ('V29554823');
+INSERT INTO paciente VALUES ('V29555823');
+INSERT INTO paciente VALUES ('V29585647');
+INSERT INTO paciente VALUES ('V29558989');
+INSERT INTO paciente VALUES ('V28553829');
+INSERT INTO paciente VALUES ('V25553823');
+INSERT INTO paciente VALUES ('V23553823');
+INSERT INTO paciente VALUES ('V22553825');
+INSERT INTO paciente VALUES ('V25553826');
+INSERT INTO paciente VALUES ('V21553827');
 -------------
 /*
 D. Se tiene que almacenar 5 médicos con todos sus datos y sus relaciones.
 'Asistente medico','Enfermeria', 'Medico'*/
-INSERT INTO personal_salud VALUES ('19553823', 'micorreo@gmail.com','Medico');
-INSERT INTO personal_salud VALUES ('19553824', 'pepito22@gmail.com','Medico');
-INSERT INTO personal_salud VALUES ('18553324', 'st02_m@gmail.com','Medico');
-INSERT INTO personal_salud VALUES ('17553823', 'micorreo1@gmail.com','Medico');
-INSERT INTO personal_salud VALUES ('16553823', 'micorreo_2002@gmail.com','Medico');
+
+INSERT INTO personal_salud VALUES ('V19553823', 'micorreo@gmail.com','Medico');
+INSERT INTO personal_salud VALUES ('V19553824', 'pepito22@gmail.com','Medico');
+INSERT INTO personal_salud VALUES ('V18553324', 'st02_m@gmail.com','Medico');
+INSERT INTO personal_salud VALUES ('V17553823', 'micorreo1@gmail.com','Medico');
+INSERT INTO personal_salud VALUES ('V16553823', 'micorreo_2002@gmail.com','Medico');
 ----------------
-INSERT INTO medico VALUES ('19553823');
-INSERT INTO medico VALUES ('19553824');
-INSERT INTO medico VALUES ('18553324');
-INSERT INTO medico VALUES ('17553823');
-INSERT INTO medico VALUES ('16553823');
+INSERT INTO medico VALUES ('V19553823');
+INSERT INTO medico VALUES ('V19553824');
+INSERT INTO medico VALUES ('V18553324');
+INSERT INTO medico VALUES ('V17553823');
+INSERT INTO medico VALUES ('V16553823');
 
 
 
 /*
 E. Se deben almacenar 5 centro de salud con su ubicación, dos (2) deben ser de
 hospitalización y dos (2) de vacunación.
-Code SERIAL,
-    Name VARCHAR(50) NOT NULL ,
-    Adress TEXT,
-    ID_Medico VARCHAR(10),
-    Code_Municipio INT ,
-    Manager_Date DATE,*/
+*/
 
-INSERT INTO centro_salud VALUES (1,'Centro de Salud de Caracas', 'Av Caracas, en Caracas', '19553823', 1,'2019-10-02');
-INSERT INTO centro_salud VALUES (2,'Centro HealthClick', 'Av Vollmer, frente a Galerias Avila', '19553824', 2,'2019-12-02');
-INSERT INTO centro_salud VALUES (3,'Centro FeelBetter', 'Av Brookling, calle el hambre', '18553324', 22,'2020-04-02');
-INSERT INTO centro_salud VALUES (4,'Clinicas Caracas', 'Av Caracas, en Caracas', '17553823', 3, '2020-10-02');
-INSERT INTO centro_salud VALUES (5,'Centro Clinico Razeti', 'Av Caracas, detras del centro comercial Parque Caracas', '16553823', 4, '2021-10-02');
+INSERT INTO centro_salud VALUES (1,'Centro de Salud de Caracas', 'Av Caracas, en Caracas', 'V19553823', 1,'2019-10-02');
+INSERT INTO centro_salud VALUES (2,'Centro HealthClick', 'Av Vollmer, frente a Galerias Avila', 'V19553824', 2,'2019-12-02');
+INSERT INTO centro_salud VALUES (3,'Centro FeelBetter', 'Av Brookling, calle el hambre', 'V18553324', 22,'2020-04-02');
+INSERT INTO centro_salud VALUES (4,'Clinicas Caracas', 'Av Caracas, en Caracas', 'V17553823', 3, '2020-10-02');
+INSERT INTO centro_salud VALUES (5,'Centro Clinico Razeti', 'Av Caracas, detras del centro comercial Parque Caracas', 'V16553823', 4, '2021-10-02');
 ----------------------------------
 INSERT INTO centro_hospitalizacion VALUES (1);
 INSERT INTO centro_hospitalizacion VALUES (2);
@@ -152,24 +134,7 @@ INSERT INTO centro_hospitalizacion VALUES (2);
 INSERT INTO centro_vacunacion VALUES (3);
 INSERT INTO centro_vacunacion VALUES (4);
 
-/*Code SERIAL,
-Name VARCHAR(30) NOT NULL,
-    Lote INT,
-    CantDosis SMALLINT,
-    Type VARCHAR(23) NOT NULL,
-    Laboratory VARCHAR(20),
-    Code_Pais SMALLINT,
-  'ARNm','Vector viral','Subunidades proteicas'*/
+
 INSERT INTO vacuna VALUES (1,'Comirnaty',1, 3,'ARNm', 'Pfizer-BioNTech',11);
 INSERT INTO vacuna VALUES (2,'AstraZeneca',7, 3,'Vector viral', 'University of Oxford',16);
 INSERT INTO vacuna VALUES (3,'Spikevax',12, 3,'Subunidades proteicas', 'Moderna',15);
-
-
-
-
-
-
-/*
-F. Se necesitan almacenar dos (2) Tratamientos con todos sus datos y con los
-medicamentos que lo conformar, así como al menos dos (2) pacientes con sus
-tratamientos.*/
