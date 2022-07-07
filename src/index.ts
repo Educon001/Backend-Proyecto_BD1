@@ -9,7 +9,6 @@ import {router as municipioRoutes} from './Routes/MunicipioR';
 import {router as vacunadaRoutes} from './Routes/VacunadaR';
 import {router as vacunaRoutes} from './Routes/VacunaR';
 
-
 const app = express();
 
 app.use(express.json());

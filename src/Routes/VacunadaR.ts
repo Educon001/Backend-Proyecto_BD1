@@ -10,7 +10,11 @@ router.get('/', VacunadaC.getVacunados);
 router.post('/', VacunadaC.createVacunado);
 
 //Actualizar una Persona.
-router.put('/:vacunadaId/:vacunadaCodeVacuna/:vacunadaCodeCentro/:vacunadaIdPersonal/:vacunadaDateVacuna', VacunadaC.updateVacunado);
+router.put(
+    '/:vacunadaPersonaId/:vacunadaCodeVacuna/:vacunadaCodeCentro/:vacunadaIdPersonal/:vacunadaDateVacuna',
+    VacunadaC.updateVacunado);
 
 //Eliminar una Persona
-router.delete('/:vacunadaId/:vacunadaCodeVacuna/:vacunadaCodeCentro/:vacunadaIdPersonal/:vacunadaDateVacuna', VacunadaC.deleteVacunado);
+router.delete(
+    '/:vacunadaPersonaId/:vacunadaCodeVacuna/:vacunadaCodeCentro/:vacunadaIdPersonal/:vacunadaDateVacuna',
+    VacunadaC.deleteVacunado);
