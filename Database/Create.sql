@@ -162,9 +162,11 @@ CREATE TABLE Requiere(
     CodeTratamiento INT,
     IdPaciente VARCHAR(10),
     Date COVID_DATE,
+    Estado VARCHAR(10),
     CONSTRAINT Tratamiento_RequiereFK FOREIGN KEY (CodeTratamiento) REFERENCES Tratamiento(Code),
     CONSTRAINT Paciente_RequiereFK FOREIGN KEY (IdPaciente) REFERENCES Paciente(ID_Persona),
-    CONSTRAINT DateTratamientoMedicamento_RequierePK PRIMARY KEY (Date, CodeTratamiento, IdPaciente)
+    CONSTRAINT DateTratamientoMedicamento_RequierePK PRIMARY KEY (Date, CodeTratamiento, IdPaciente),
+    CONSTRAINT Estado_Requiere_Check CHECK (Estado IN('En curso','Finalizado' ))
 );
 
 CREATE TABLE Reside(

@@ -19,7 +19,7 @@ INSERT INTO pais VALUES (default, 'Holanda');
 INSERT INTO pais VALUES (default, 'India');
 INSERT INTO pais VALUES (default, 'Inglaterra');
 ----------------------------------
-INSERT INTO virus_variante VALUES ('Alpha', 'B.1.1.7',2019, 5, 'VOC',1 );
+INSERT INTO virus_variante VALUES ('Alpha', 'B.1.1.7',2019, 5, 'de',1 );
 INSERT INTO virus_variante VALUES ('Beta', 'B.1.35', 2020, 8, 'VOI',7);
 INSERT INTO virus_variante VALUES ('Gamma', 'P.1', 2021, 2, 'VUM',13);
 
@@ -69,7 +69,7 @@ INSERT INTO municipio VALUES (default, 'Staten Island', 5);
 C. Se tiene información de al menos 10 pacientes.
 */
 
-INSERT INTO persona VALUES ('V29554823','Juan','Perez','M','1998-10-12');
+INSERT INTO persona VALUES ('V29554863','Juan','Perez','M','1998-10-12');
 INSERT INTO persona VALUES ('V29555823','Jose','Nuñez','F','2000-10-12');
 INSERT INTO persona VALUES ('V29585647','Maria','Perez','F','1975-10-12');
 INSERT INTO persona VALUES ('V29558989','Eduardo','Consalvo','M','2001-10-12');
@@ -136,10 +136,14 @@ INSERT INTO centro_vacunacion VALUES (4);
 INSERT INTO centro_vacunacion VALUES (5);
 
 
-INSERT INTO vacuna VALUES (default,'Comirnaty',1, 3,'ARNm', 'Pfizer-BioNTech',11);
+INSERT INTO vacuna VALUES (default,'Comirnaty',1, 2,'ARNm', 'Pfizer-BioNTech',11);
 INSERT INTO vacuna VALUES (default,'AstraZeneca',7, 3,'Vector viral', 'University of Oxford',16);
 INSERT INTO vacuna VALUES (default,'Spikevax',12, 3,'Subunidades proteicas', 'Moderna',15);
 
-INSERT INTO vacunada VALUES ('V29554823',1,3,'V19553824','2022-05-06',1);
+INSERT INTO vacunada VALUES ('V29558989',1,3,'V19553824','2022-05-06',1);
 INSERT INTO vacunada VALUES ('V23553823',1,5,'V17553823','2022-05-13',1);
 INSERT INTO vacunada VALUES ('V29554823',1,5,'V17553823','2022-06-06',2);
+
+INSERT INTO tratamiento VALUES (1, 'Tratamiento');
+
+INSERT INTO requiere VALUES (1,'V29554823','2022-07-01','En curso');
