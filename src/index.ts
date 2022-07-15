@@ -8,6 +8,10 @@ import {router as estadoRoutes} from './Routes/EstadoR';
 import {router as municipioRoutes} from './Routes/MunicipioR';
 import {router as vacunadaRoutes} from './Routes/VacunadaR';
 import {router as vacunaRoutes} from './Routes/VacunaR';
+import {router as tratamientoRoutes} from './Routes/TratamientoR';
+import {router as medicamentoRoutes} from './Routes/MedicamentoR';
+import {router as varianteRoutes} from './Routes/VarianteR';
+
 
 const app = express();
 
@@ -33,3 +37,7 @@ app.use('/estado', estadoRoutes);
 app.use('/municipio', municipioRoutes);
 app.use('/vacunada', vacunadaRoutes);
 app.use('/vacuna', vacunaRoutes);
+app.use('/tratamiento', tratamientoRoutes);
+app.use('/medicamento', medicamentoRoutes);
+app.use('/variante', varianteRoutes);
+

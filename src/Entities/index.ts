@@ -21,3 +21,5 @@ export * from './Requiere';
 export * from './Reside';
 export * from './Vacunada';
 export * from './Tiene';
+export * from './Tratamiento';
+export * from './Sintoma';
