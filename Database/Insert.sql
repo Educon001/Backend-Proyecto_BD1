@@ -88,16 +88,16 @@ INSERT INTO persona VALUES ('V15553823','Jesus','Ferran','N/A','1992-10-12');
 INSERT INTO persona VALUES ('V14553823','Marie','Curie','F','1998-10-12');
 INSERT INTO persona VALUES ('E13553823','Lana','Roberts','F','1980-10-01');
 ------
-INSERT INTO paciente VALUES ('V29554823');
-INSERT INTO paciente VALUES ('V29555823');
-INSERT INTO paciente VALUES ('V29585647');
-INSERT INTO paciente VALUES ('V29558989');
-INSERT INTO paciente VALUES ('V28553829');
-INSERT INTO paciente VALUES ('V25553823');
-INSERT INTO paciente VALUES ('V23553823');
-INSERT INTO paciente VALUES ('V22553825');
-INSERT INTO paciente VALUES ('V25553826');
-INSERT INTO paciente VALUES ('V21553827');
+-- INSERT INTO paciente VALUES ('V29554823');
+-- INSERT INTO paciente VALUES ('V29555823');
+-- INSERT INTO paciente VALUES ('V29585647');
+-- INSERT INTO paciente VALUES ('V29558989');
+-- INSERT INTO paciente VALUES ('V28553829');
+-- INSERT INTO paciente VALUES ('V25553823');
+-- INSERT INTO paciente VALUES ('V23553823');
+-- INSERT INTO paciente VALUES ('V22553825');
+-- INSERT INTO paciente VALUES ('V25553826');
+-- INSERT INTO paciente VALUES ('V21553827');
 -------------
 /*
 D. Se tiene que almacenar 5 médicos con todos sus datos y sus relaciones.
@@ -108,14 +108,13 @@ INSERT INTO personal_salud VALUES ('V19553824', 'pepito22@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('V18553324', 'st02_m@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('V17553823', 'micorreo1@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('V16553823', 'micorreo_2002@gmail.com','Medico');
+INSERT INTO personal_salud VALUES ('E13553823', 'lroberts80@gmail.com','Medico');
 ----------------
-INSERT INTO medico VALUES ('V19553823');
-INSERT INTO medico VALUES ('V19553824');
-INSERT INTO medico VALUES ('V18553324');
-INSERT INTO medico VALUES ('V17553823');
-INSERT INTO medico VALUES ('V16553823');
-
-
+-- INSERT INTO medico VALUES ('V19553823');
+-- INSERT INTO medico VALUES ('V19553824');
+-- INSERT INTO medico VALUES ('V18553324');
+-- INSERT INTO medico VALUES ('V17553823');
+-- INSERT INTO medico VALUES ('V16553823');
 
 /*
 E. Se deben almacenar 5 centro de salud con su ubicación, dos (2) deben ser de
@@ -149,6 +148,7 @@ INSERT INTO vacunada VALUES ('V25553826',2,5,'V17553823','2021-04-13',2);
 INSERT INTO tratamiento VALUES (1, 'Tratamiento');
 
 INSERT INTO requiere VALUES (1,'V29554823','2022-07-01','En curso');
+INSERT INTO requiere VALUES (1,'E13553823','2022-06-12','Finalizado');
 
 INSERT INTO contagio VALUES ('V29554823','Alpha','2021-03-12',6,false);
 INSERT INTO contagio VALUES ('V29555823','Alpha','2020-05-23',8,true);
@@ -160,6 +160,7 @@ INSERT INTO contagio VALUES ('V25553826','Omicron','2022-04-28',7,true);
 INSERT INTO contagio VALUES ('V22553825','Gamma','2022-01-08',2,false);
 
 INSERT INTO hospitalizado VALUES ('V29555823',1,'2020-05-24');
+INSERT INTO hospitalizado VALUES ('V29583211',1,'2022-07-16');
 
 INSERT INTO reside VALUES (1,'V29554823','2001-09-23');
 INSERT INTO reside VALUES (3,'V29558989','2011-09-23');

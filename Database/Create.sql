@@ -250,3 +250,74 @@ CREATE TABLE Hospitalizado(
     CONSTRAINT CentroH_HospitalizadoFK FOREIGN KEY (CodeCentroH) REFERENCES Centro_Hospitalizacion(CodeCentroH),
     CONSTRAINT PacienteCentroHDate_HospitalizadoPK PRIMARY KEY (IDPaciente, CodeCentroH, DateHospitalizado)
 );
+
+---------------------------------------------TRIGGERS------------------------------------------------------
+
+CREATE FUNCTION  insert_medico()
+    RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    IF new.Type = 'Medico' THEN
+        INSERT INTO medico (id_medico) VALUES (new.ID_Persona);
+    ELSE
+        DELETE FROM medico where id_medico=new.ID_Persona;
+    END IF;
+    RETURN new;
+end;
+$$;
+
+CREATE TRIGGER Insert_Personal_Salud_Medico
+    AFTER INSERT
+    ON Personal_Salud
+    FOR EACH ROW
+EXECUTE PROCEDURE insert_medico();
+
+CREATE TRIGGER Alter_Personal_Salud_Medico
+    AFTER UPDATE
+    ON Personal_Salud
+    FOR EACH ROW
+EXECUTE procedure insert_medico();
+
+CREATE FUNCTION delete_medico()
+    RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    DELETE FROM medico WHERE id_medico=old.id_persona;
+    RETURN old;
+end;
+$$;
+
+CREATE TRIGGER Delete_Personal_Salud_Medico
+    BEFORE DELETE
+    ON Personal_Salud
+    FOR EACH ROW
+EXECUTE PROCEDURE delete_medico();
+
+CREATE FUNCTION  insert_paciente()
+    RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    IF new.IDPaciente not in (SELECT * FROM Paciente) THEN
+        INSERT INTO paciente VALUES (new.IDPaciente);
+    END IF;
+    RETURN new;
+end;
+$$;
+
+CREATE TRIGGER create_paciente_hospitalizado
+    BEFORE INSERT
+    ON Hospitalizado
+    FOR EACH ROW
+EXECUTE PROCEDURE insert_paciente();
+
+CREATE TRIGGER create_paciente_tratamiento
+    BEFORE INSERT
+    ON Requiere
+    FOR EACH ROW
+EXECUTE PROCEDURE insert_paciente();
