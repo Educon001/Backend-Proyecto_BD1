@@ -46,7 +46,7 @@ export async function updateEficacia(req: Request, res: Response) {
         eficaciaDenomOMS,
         eficaciaCodeVacuna
     } = req.params;
-    let eficacia = new Eficacia(req.body.denomoms, parseInt(req.body.codevacuna), parseFloat(req.body.percentage)  );
+    let eficacia = new Eficacia(eficaciaDenomOMS, parseInt(eficaciaCodeVacuna), parseFloat(req.body.percentage)  );
     try {
         await db().query(`UPDATE eficacia
                       SET percentage=$5

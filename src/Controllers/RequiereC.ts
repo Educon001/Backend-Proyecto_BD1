@@ -20,16 +20,17 @@ export async function getRequiere(req: Request, res: Response) {
 
 export async function createRequiere(req: Request, res: Response) {
     console.info('Attempting to create residente with input', req.body);
-    let requiere = new Requiere(parseInt(req.body.codetratamiento), req.body.idpaciente, new Date(req.body.date));
+    let requiere = new Requiere(parseInt(req.body.codetratamiento), req.body.idpaciente, new Date(req.body.date), req.body.estado);
     try {
         console.time(
             `Inserted residente with code ${requiere.codeTratamiento, requiere.idPaciente, requiere.date}`);
         await db().
-        query('INSERT INTO reside VALUES ($1, $2, $3)',
+        query('INSERT INTO reside VALUES ($1, $2, $3, $4)',
             [
                 requiere.codeTratamiento,
                 requiere.idPaciente,
-                requiere.date]);
+                requiere.date,
+                requiere.estado]);
         console.timeEnd(
             `Inserted requiere with code ${requiere.codeTratamiento, requiere.idPaciente, requiere.date}`);
         return res.json(requiere);
@@ -47,10 +48,10 @@ export async function updateRequiere(req: Request, res: Response) {
         requiereidPaciente,
         requiereDate
     } = req.params;
-    let requiere = new Requiere(parseInt(req.body.codetratamiento), req.body.idpaciente, new Date(req.body.date));
+    let requiere = new Requiere(parseInt(req.body.codetratamiento), req.body.idpaciente, new Date(req.body.date), req.body.estado);
     try {
         await db().query(`UPDATE requiere
-                      SET codetratamiento=$1
+                      SET codetratamiento=$1 --estado=$4,
                       WHERE codetratamiento=$1
                         and idpaciente=$2
                         and date=$3 `,

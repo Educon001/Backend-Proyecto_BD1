@@ -43,9 +43,12 @@ export async function createHospitalizado(req: Request, res: Response) {
 export async function updateHospitalizado(req: Request, res: Response) {
 
     let {
+        hospitalizadoIdPaciente,
+        hospitalizadoCodeCentroH,
+        hospitalizadoDateHospitalizado
 
     } = req.params;
-    let hospitalizado = new Hospitalizado(req.body.idpaciente, parseInt(req.body.codecentroh), new Date(req.body.datehospitalizado));
+    let hospitalizado = new Hospitalizado(hospitalizadoIdPaciente, parseInt(hospitalizadoCodeCentroH), new Date(hospitalizadoDateHospitalizado));
     try {
         await db().query(`UPDATE hospitalizado
                       SET codecentroh=$1

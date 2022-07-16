@@ -25,7 +25,7 @@ export async function createResidente(req: Request, res: Response) {
         console.time(
             `Inserted residente with code ${reside.codeProvincia, reside.idPersona, new Date(reside.dateReside)}`);
         await db().
-        query('INSERT INTO reside VALUES ($1, $2, $3, $4, $5, $6)',
+        query('INSERT INTO reside VALUES ($1, $2, $3)',
             [
                 reside.codeProvincia,
                 reside.idPersona,
@@ -50,8 +50,9 @@ export async function updateResidente(req: Request, res: Response) {
     let reside = new Reside(parseInt(resideCodeProvincia), resideIdPersona, new Date(resideFechaReside));
     try {
         await db().query(`UPDATE reside
-                      SET codeprovincia=$1
-                      WHERE idpersona=$2
+                      SET codeprovincia=$2
+                      WHERE idpersona=$1
+                        and codeprovincia=$2
                         and datereside=$3
         `,
 

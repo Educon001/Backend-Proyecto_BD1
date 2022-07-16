@@ -45,7 +45,7 @@ export async function updateTiene(req: Request, res: Response) {
         tieneCodeSintoma,
         tieneDenomOMS
     } = req.params;
-    let tiene = new Tiene(parseInt(req.body.codesintoma), req.body.denomOMS);
+    let tiene = new Tiene(parseInt(tieneCodeSintoma), tieneDenomOMS);
     try {
         await db().query(`UPDATE tiene
                       SET codesintoma=$1
