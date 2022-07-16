@@ -49,7 +49,7 @@ export async function createVacunado(req: Request, res: Response) {
   }
 };
 
-//Actualizar pais
+//Actualizar vacunado
 export async function updateVacunado(req: Request, res: Response) {
 
   let {

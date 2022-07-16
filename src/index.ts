@@ -11,7 +11,12 @@ import {router as vacunaRoutes} from './Routes/VacunaR';
 import {router as tratamientoRoutes} from './Routes/TratamientoR';
 import {router as medicamentoRoutes} from './Routes/MedicamentoR';
 import {router as varianteRoutes} from './Routes/VarianteR';
-
+import {router as contagioRoutes} from './Routes/ContagioR';
+import {router as resideRoutes} from './Routes/ResideR';
+import {router as tieneRoutes} from './Routes/TieneR';
+import {router as requiereRoutes} from './Routes/RequiereR';
+import {router as hospitalizadoRoutes} from './Routes/HospitalizadoR';
+import {router as eficaciaRoutes} from './Routes/EficaciaR';
 
 const app = express();
 
@@ -40,4 +45,12 @@ app.use('/vacuna', vacunaRoutes);
 app.use('/tratamiento', tratamientoRoutes);
 app.use('/medicamento', medicamentoRoutes);
 app.use('/variante', varianteRoutes);
+app.use('/contagio', contagioRoutes);
+app.use('/reside', resideRoutes);
+app.use('/tiene', tieneRoutes);
+app.use('/requiere', requiereRoutes);
+app.use('/hospitalizado', hospitalizadoRoutes);
+app.use('/eficacia', eficaciaRoutes);
+
+
 
