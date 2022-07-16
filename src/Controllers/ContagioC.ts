@@ -20,7 +20,7 @@ export async function getContagiado(req: Request, res: Response) {
 
 export async function createContagiado(req: Request, res: Response) {
     console.info('Attempting to create contagiado with input', req.body);
-    let contagio = new Contagio(req.body.idpersona, req.body.denomoms,
+    let contagio = new Contagio(req.body.idpersona, req.body.denom_oms,
         new Date(req.body.datecontagio), parseInt(req.body.resttime), req.body.casahospitalizado);
     try {
         console.time(

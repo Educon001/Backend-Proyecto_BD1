@@ -18,7 +18,7 @@ export async function getVariante(req: Request, res: Response) {
 //Crear Variante
 export async function createVariante(req: Request, res: Response) {
     console.info('Attempting to create variante with input', req.body);
-    let variante = new Variante(req.body.denomoms, req.body.linaje, parseInt(req.body.originyear), parseInt(req.body.originmonth), req.body.clasification, parseInt(req.body.cadepais));
+    let variante = new Variante(req.body.denom_oms, req.body.linaje, parseInt(req.body.origin_year), parseInt(req.body.origin_month), req.body.clasification, parseInt(req.body.code_pais));
     try {
         console.time(`Inserted variante with name ${variante.demomOMS}`);
         await db().
@@ -42,7 +42,7 @@ export async function createVariante(req: Request, res: Response) {
 export async function updateVariante(req: Request, res: Response) {
 
     let {varianteCode} = req.params;
-    let variante = new Variante(req.body.denomoms, req.body.linaje, parseInt(req.body.originyear), parseInt(req.body.originmonth), req.body.clasification, parseInt(req.body.cadepais));
+    let variante = new Variante(req.body.denom_oms, req.body.linaje, parseInt(req.body.origin_year), parseInt(req.body.origin_month), req.body.clasification, parseInt(req.body.code_pais));
     try {
         await db().query(`UPDATE virus_variante
                       SET linaje=$2,

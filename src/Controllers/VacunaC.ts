@@ -20,7 +20,7 @@ export async function createVacuna(req: Request, res: Response) {
   console.info('Attempting to create vacuna with input', req.body);
   let vacuna = new Vacuna(req.body.name, parseInt(req.body.lote),
       parseInt(req.body.cantdosis), req.body.type, req.body.laboratory,
-      parseInt(req.body.codepais));
+      parseInt(req.body.code_pais));
   try {
     console.time(`Inserted vacuna with name ${vacuna.name}`);
     await db().
@@ -46,7 +46,7 @@ export async function updateVacuna(req: Request, res: Response) {
   let {vacunaCode} = req.params;
   let vacuna = new Vacuna(req.body.name, parseInt(req.body.lote),
       parseInt(req.body.cantdosis), req.body.type, req.body.laboratory,
-      parseInt(req.body.codepais), parseInt(vacunaCode));
+      parseInt(req.body.code_pais), parseInt(vacunaCode));
   try {
     await db().query(`UPDATE vacuna
                       SET name=$2,

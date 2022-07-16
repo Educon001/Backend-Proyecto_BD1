@@ -20,7 +20,7 @@ export async function getEficacia(req: Request, res: Response) {
 
 export async function createEficacia(req: Request, res: Response) {
     console.info('Attempting to create contagiado with input', req.body);
-    let eficacia = new Eficacia(req.body.denomoms, parseInt(req.body.codevacuna), parseFloat(req.body.percentage) );
+    let eficacia = new Eficacia(req.body.denom_oms, parseInt(req.body.codevacuna), parseFloat(req.body.percentage) );
     try {
         console.time(
             `Inserted  with code ${eficacia.denomOMS, eficacia.codeVacuna}`);

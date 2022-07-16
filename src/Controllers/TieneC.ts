@@ -20,7 +20,7 @@ export async function getTiene(req: Request, res: Response) {
 
 export async function createTiene(req: Request, res: Response) {
     console.info('Attempting to create tiene with input', req.body);
-    let tiene = new Tiene(parseInt(req.body.codesintoma), req.body.denomOMS);
+    let tiene = new Tiene(parseInt(req.body.codesintoma), req.body.denom_oms);
     try {
         console.time(
             `Inserted tiene with code ${tiene.codeSintoma, tiene.denomOMS}`);

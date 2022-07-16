@@ -52,8 +52,8 @@ async function createCentroSalud(cs: CentroVacunacion | CentroHospitalizacion): 
 export async function createCentroHospitalizacion(req: Request, res: Response) {
   console.info('Attempting to Hospitalization center with input', req.body);
   let ch = new CentroHospitalizacion(req.body.name, req.body.address,
-      req.body.idmedico, req.body.codemunicipio,
-      new Date(req.body.managerdate));
+      req.body.id_medico, req.body.code_municipio,
+      new Date(req.body.manager_date));
   try {
     console.time(`Inserted Hospitalization center with name ${ch.name}`);
     const result = await createCentroSalud(ch);
@@ -71,8 +71,8 @@ export async function createCentroHospitalizacion(req: Request, res: Response) {
 export async function createCentroVacunacion(req: Request, res: Response) {
   console.info('Attempting to Vaccination center with input', req.body);
   let cv = new CentroVacunacion(req.body.name, req.body.address,
-      req.body.idmedico, req.body.codemunicipio,
-      new Date(req.body.managerdate));
+      req.body.id_medico, req.body.code_municipio,
+      new Date(req.body.manager_date));
   try {
     console.time(`Inserted Vaccination center with name ${cv.name}`);
     const result = await createCentroSalud(cv);
@@ -90,8 +90,8 @@ export async function createCentroVacunacion(req: Request, res: Response) {
 export async function updateCentroSalud(req: Request, res: Response) {
   let {csCode} = req.params;
   let cs = new CentroSalud(req.body.name, req.body.address,
-      req.body.idmedico, req.body.codemunicipio,
-      new Date(req.body.managerdate), parseInt(csCode));
+      req.body.id_medico, req.body.code_municipio,
+      new Date(req.body.manager_date), parseInt(csCode));
   try {
     await db().query(`UPDATE centro_salud
                       SET name           = $2,
