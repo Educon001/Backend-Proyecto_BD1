@@ -13,4 +13,5 @@ router.post('/', EficaciaC.createEficacia);
 router.put('/:eficaciaDenomOMS/:eficaciaCodeVacuna', EficaciaC.updateEficacia);
 
 //Eliminar una Eficacia
-router.delete('/:eficaciaDenomOMS/:eficaciaCodeVacuna', EficaciaC.deleteEficacia);
+router.delete('/:eficaciaDenomOMS/:eficaciaCodeVacuna',
+    EficaciaC.deleteEficacia);

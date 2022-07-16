@@ -1,6 +1,6 @@
 import express from 'express';
 import * as TratamientoC from '../Controllers/TratamientoC';
-import {Tratamiento} from "../Entities";
+import {Tratamiento} from '../Entities';
 
 export const router = express.Router();
 

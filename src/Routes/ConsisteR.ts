@@ -1,6 +1,6 @@
 import express from 'express';
 import * as ConsisteC from '../Controllers/ConsisteC';
-import {Consiste} from "../Entities";
+import {Consiste} from '../Entities';
 
 export const router = express.Router();
 
@@ -11,7 +11,9 @@ router.get('/', ConsisteC.getConsiste);
 router.post('/', ConsisteC.createConsiste);
 
 //Actualizar un Consiste
-router.put('/:consisteTratamiento/:rconsisteMedicamento', ConsisteC.updateConsiste);
+router.put('/:consisteTratamiento/:rconsisteMedicamento',
+    ConsisteC.updateConsiste);
 
 //Eliminar un Consiste
-router.delete('/:consisteTratamiento/:rconsisteMedicamento', ConsisteC.deleteConsiste);
+router.delete('/:consisteTratamiento/:rconsisteMedicamento',
+    ConsisteC.deleteConsiste);

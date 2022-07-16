@@ -3,7 +3,7 @@ export class Requiere {
       public codeTratamiento: number,
       public idPaciente: string,
       public date: Date,
-      public estado:string,
+      public estado: string,
   ) {
   }
 }

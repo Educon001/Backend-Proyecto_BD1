@@ -10,7 +10,11 @@ router.get('/', HospitalizadoC.getHospitalizado);
 router.post('/', HospitalizadoC.createHospitalizado);
 
 //Actualizar un Hospitalizacion
-router.put('/:hospitalizadoIdPaciente/:hospitalizadoCodeCentroH/:hospitalizadoDateHospitalizado', HospitalizadoC.updateHospitalizado);
+router.put(
+    '/:hospitalizadoIdPaciente/:hospitalizadoCodeCentroH/:hospitalizadoDateHospitalizado',
+    HospitalizadoC.updateHospitalizado);
 
 //Eliminar un hospitalizacion
-router.delete('/:hospitalizadoIdPaciente/:hospitalizadoCodeCentroH/:hospitalizadoDateHospitalizado', HospitalizadoC.deleteHospitalizado);
+router.delete(
+    '/:hospitalizadoIdPaciente/:hospitalizadoCodeCentroH/:hospitalizadoDateHospitalizado',
+    HospitalizadoC.deleteHospitalizado);

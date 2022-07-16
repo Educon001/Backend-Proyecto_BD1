@@ -10,7 +10,9 @@ router.get('/', RequiereC.getRequiere);
 router.post('/', RequiereC.createRequiere);
 
 //Actualizar un Requiere
-router.put('/:requiereCodeTratamiento/:requiereidPaciente/:requiereDate', RequiereC.updateRequiere);
+router.put('/:requiereCodeTratamiento/:requiereidPaciente/:requiereDate',
+    RequiereC.updateRequiere);
 
 //Eliminar un Requiere
-router.delete('/:requiereCodeTratamiento/:requiereidPaciente/:requiereDate', RequiereC.deleteRequiere);
+router.delete('/:requiereCodeTratamiento/:requiereidPaciente/:requiereDate',
+    RequiereC.deleteRequiere);

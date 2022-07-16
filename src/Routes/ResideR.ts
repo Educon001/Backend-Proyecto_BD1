@@ -10,7 +10,9 @@ router.get('/', ResideC.getResidente);
 router.post('/', ResideC.createResidente);
 
 //Actualizar un Residente
-router.put('/:resideCodeProvincia/:resideIdPersona/:resideFechaReside', ResideC.updateResidente);
+router.put('/:resideCodeProvincia/:resideIdPersona/:resideFechaReside',
+    ResideC.updateResidente);
 
 //Eliminar un Residente
-router.delete('/:resideCodeProvincia/:resideIdPersona/:resideFechaReside', ResideC.deleteResidente);
+router.delete('/:resideCodeProvincia/:resideIdPersona/:resideFechaReside',
+    ResideC.deleteResidente);

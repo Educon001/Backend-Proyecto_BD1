@@ -1,6 +1,6 @@
 import express from 'express';
 import * as VarianteC from '../Controllers/VarianteC';
-import {Variante} from "../Entities";
+import {Variante} from '../Entities';
 
 export const router = express.Router();
 

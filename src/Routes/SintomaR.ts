@@ -1,6 +1,6 @@
 import express from 'express';
 import * as SintomaC from '../Controllers/SintomaC';
-import {Sintoma} from "../Entities";
+import {Sintoma} from '../Entities';
 
 export const router = express.Router();
 

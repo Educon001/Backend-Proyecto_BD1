@@ -10,7 +10,11 @@ router.get('/', AsignadoC.getAsignado);
 router.post('/', AsignadoC.createAsignado);
 
 //Actualizar un Asignado
-router.put('/:asignadoIdPersonalSalud/:asignadoCodeCentroSalud/:asignadoDateAsignado', AsignadoC.updateAsignado);
+router.put(
+    '/:asignadoIdPersonalSalud/:asignadoCodeCentroSalud/:asignadoDateAsignado',
+    AsignadoC.updateAsignado);
 
 //Eliminar un Asignado
-router.delete('/:asignadoIdPersonalSalud/:asignadoCodeCentroSalud/:asignadoDateAsignado', AsignadoC.deleteAsignado);
+router.delete(
+    '/:asignadoIdPersonalSalud/:asignadoCodeCentroSalud/:asignadoDateAsignado',
+    AsignadoC.deleteAsignado);

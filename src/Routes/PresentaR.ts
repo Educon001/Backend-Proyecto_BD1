@@ -10,7 +10,9 @@ router.get('/', PresentaC.getPresenta);
 router.post('/', PresentaC.createPresenta);
 
 //Actualizar un Presenta
-router.put('/:presentaCodeVacuna/:presentaCodeSintoma', PresentaC.updatePresenta);
+router.put('/:presentaCodeVacuna/:presentaCodeSintoma',
+    PresentaC.updatePresenta);
 
 //Eliminar un Presenta
-router.delete('/:presentaCodeVacuna/:presentaCodeSintoma', PresentaC.deletePresenta);
+router.delete('/:presentaCodeVacuna/:presentaCodeSintoma',
+    PresentaC.deletePresenta);

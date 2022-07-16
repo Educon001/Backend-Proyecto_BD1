@@ -10,7 +10,9 @@ router.get('/', ContagioC.getContagiado);
 router.post('/', ContagioC.createContagiado);
 
 //Actualizar un Contaciado
-router.put('/:contagioPersonaId/:contagioDenomOMS/:contagioFechaContagio', ContagioC.updateContagiado);
+router.put('/:contagioPersonaId/:contagioDenomOMS/:contagioFechaContagio',
+    ContagioC.updateContagiado);
 
 //Eliminar una Persona
-router.delete('/:contagioPersonaId/:contagioDenomOMS/:contagioFechaContagio', ContagioC.deleteContagiado);
+router.delete('/:contagioPersonaId/:contagioDenomOMS/:contagioFechaContagio',
+    ContagioC.deleteContagiado);
