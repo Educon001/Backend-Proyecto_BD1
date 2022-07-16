@@ -19,10 +19,10 @@ INSERT INTO pais VALUES (default, 'Holanda');
 INSERT INTO pais VALUES (default, 'India');
 INSERT INTO pais VALUES (default, 'Inglaterra');
 ----------------------------------
-INSERT INTO virus_variante VALUES ('Alpha', 'B.1.1.7',2019, 5, 'de',1 );
+INSERT INTO virus_variante VALUES ('Alpha', 'B.1.1.7',2019, 5, 'VOC',1 );
 INSERT INTO virus_variante VALUES ('Beta', 'B.1.35', 2020, 8, 'VOI',7);
 INSERT INTO virus_variante VALUES ('Gamma', 'P.1', 2021, 2, 'VUM',13);
-
+INSERT INTO virus_variante VALUES ('Omicron', 'B.1.1.529.1', 2021, 11, 'VOI',3);
 
 
 /*
@@ -143,7 +143,23 @@ INSERT INTO vacuna VALUES (default,'Spikevax',12, 3,'Subunidades proteicas', 'Mo
 INSERT INTO vacunada VALUES ('V29558989',1,3,'V19553824','2022-05-06',1);
 INSERT INTO vacunada VALUES ('V23553823',1,5,'V17553823','2022-05-13',1);
 INSERT INTO vacunada VALUES ('V29554823',1,5,'V17553823','2022-06-06',2);
+INSERT INTO vacunada VALUES ('V25553826',2,3,'V19553824','2021-03-13',1);
+INSERT INTO vacunada VALUES ('V25553826',2,5,'V17553823','2021-04-13',2);
 
 INSERT INTO tratamiento VALUES (1, 'Tratamiento');
 
 INSERT INTO requiere VALUES (1,'V29554823','2022-07-01','En curso');
+
+INSERT INTO contagio VALUES ('V29554823','Alpha','2021-03-12',6,false);
+INSERT INTO contagio VALUES ('V29555823','Alpha','2020-05-23',8,true);
+INSERT INTO contagio VALUES ('V29585647','Alpha','2020-02-16',10,true);
+INSERT INTO contagio VALUES ('V29585647','Beta','2020-12-05',4,false);
+INSERT INTO contagio VALUES ('V29558989','Gamma','2021-11-02',5,true);
+INSERT INTO contagio VALUES ('V28553829','Omicron','2022-01-22',12,true);
+INSERT INTO contagio VALUES ('V25553826','Omicron','2022-04-28',7,true);
+INSERT INTO contagio VALUES ('V22553825','Gamma','2022-01-08',2,false);
+
+INSERT INTO hospitalizado VALUES ('V29555823',1,'2020-05-24');
+
+INSERT INTO reside VALUES (1,'V29554823','2001-09-23');
+INSERT INTO reside VALUES (3,'V29558989','2011-09-23');
