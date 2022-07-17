@@ -252,18 +252,14 @@ CREATE TABLE Hospitalizado(
 );
 
 ---------------------------------------------TRIGGERS------------------------------------------------------
-drop function insert_medico() CASCADE;
 CREATE FUNCTION  insert_medico()
     RETURNS TRIGGER
     LANGUAGE plpgsql
 AS
 $$
 BEGIN
-    IF new.Type = 'Medico' AND old.Type<>new.Type THEN
+    IF new.Type = 'Medico' THEN
         INSERT INTO medico (id_medico) VALUES (new.ID_Persona);
-    ELSE IF new.Type <> 'Medico' THEN
-            DELETE FROM medico where id_medico=new.ID_Persona;
-        END IF;
     END IF;
     RETURN new;
 end;
@@ -275,11 +271,27 @@ CREATE TRIGGER Insert_Personal_Salud_Medico
     FOR EACH ROW
     EXECUTE PROCEDURE insert_medico();
 
+CREATE FUNCTION  update_medico()
+    RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    IF new.Type = 'Medico' AND old.Type<>new.Type THEN
+        INSERT INTO medico (id_medico) VALUES (new.ID_Persona);
+    ELSE IF new.Type <> 'Medico' THEN
+        DELETE FROM medico where id_medico=new.ID_Persona;
+    END IF;
+    END IF;
+    RETURN new;
+end;
+$$;
+
 CREATE TRIGGER Alter_Personal_Salud_Medico
     AFTER UPDATE
     ON Personal_Salud
     FOR EACH ROW
-    EXECUTE procedure insert_medico();
+    EXECUTE procedure update_medico();
 
 CREATE FUNCTION delete_medico()
     RETURNS TRIGGER

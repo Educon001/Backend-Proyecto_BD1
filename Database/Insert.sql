@@ -109,6 +109,7 @@ INSERT INTO personal_salud VALUES ('V18553324', 'st02_m@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('V17553823', 'micorreo1@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('V16553823', 'micorreo_2002@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('E13553823', 'lroberts80@gmail.com','Medico');
+INSERT INTO personal_salud VALUES ('V14553823', 'mcurie@hotmail.com', 'Medico');
 ----------------
 -- INSERT INTO medico VALUES ('V19553823');
 -- INSERT INTO medico VALUES ('V19553824');
