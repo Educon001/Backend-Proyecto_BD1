@@ -164,3 +164,45 @@ INSERT INTO hospitalizado VALUES ('V29583211',1,'2022-07-16');
 
 INSERT INTO reside VALUES (1,'V29554823','2001-09-23');
 INSERT INTO reside VALUES (3,'V29558989','2011-09-23');
+
+INSERT INTO eficacia VALUES ('Alpha',1,64.76);
+INSERT INTO eficacia VALUES ('Alpha',2,83.44);
+INSERT INTO eficacia VALUES ('Beta',3,92.32);
+INSERT INTO eficacia VALUES ('Beta',1,95.51);
+INSERT INTO eficacia VALUES ('Gamma',3,70);
+INSERT INTO eficacia VALUES ('Gamma',2,76.2);
+INSERT INTO eficacia VALUES ('Omicron',3,85);
+INSERT INTO eficacia VALUES ('Omicron',2,35);
+
+INSERT INTO sintoma_efecto VALUES (default,'Dolor de cabeza');
+INSERT INTO sintoma_efecto VALUES (default,'Tos');
+INSERT INTO sintoma_efecto VALUES (default,'Congestion nasal');
+INSERT INTO sintoma_efecto VALUES (default,'Escalofrios');
+INSERT INTO sintoma_efecto VALUES (default,'Fiebre');
+INSERT INTO sintoma_efecto VALUES (default,'Diarrea');
+INSERT INTO sintoma_efecto VALUES (default,'Perdida de gusto');
+INSERT INTO sintoma_efecto VALUES (default,'Dolor de garganta');
+INSERT INTO sintoma_efecto VALUES (default,'Disnea');
+
+INSERT INTO tiene VALUES (1,'Alpha');
+INSERT INTO tiene VALUES (2,'Alpha');
+INSERT INTO tiene VALUES (3,'Alpha');
+INSERT INTO tiene VALUES (7,'Alpha');
+INSERT INTO tiene VALUES (5,'Alpha');
+INSERT INTO tiene VALUES (1,'Beta');
+INSERT INTO tiene VALUES (2,'Beta');
+INSERT INTO tiene VALUES (3,'Beta');
+INSERT INTO tiene VALUES (5,'Beta');
+INSERT INTO tiene VALUES (6,'Beta');
+INSERT INTO tiene VALUES (1,'Gamma');
+INSERT INTO tiene VALUES (2,'Gamma');
+INSERT INTO tiene VALUES (3,'Gamma');
+INSERT INTO tiene VALUES (4,'Gamma');
+INSERT INTO tiene VALUES (5,'Gamma');
+INSERT INTO tiene VALUES (1,'Omicron');
+INSERT INTO tiene VALUES (2,'Omicron');
+INSERT INTO tiene VALUES (3,'Omicron');
+INSERT INTO tiene VALUES (5,'Omicron');
+INSERT INTO tiene VALUES (8,'Omicron');
+INSERT INTO tiene VALUES (9,'Omicron');
+

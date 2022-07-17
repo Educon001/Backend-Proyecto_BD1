@@ -1,6 +1,6 @@
 /*Mostrar nombre y ubicacion( nombre del municipio) de los centros de
   salud con mas personas de sexo masculino vacunadas con tipo "ARNm"*/
-CREATE VIEW CS_M_ARNm as
+CREATE VIEW Reporte9 as
 SELECT CS.Name AS Centro_Salud, M.Name AS Municipio
 FROM Centro_Salud CS
          JOIN Municipio M ON (CS.code_municipio=M.code)
@@ -44,7 +44,7 @@ FROM centro_salud cs,
 WHERE Vac.codecentrov = Vac_C.codecentrov and Vac.codecentrov=cs.code;
 
 /* 5. Imprima los países donde vivan más personas contagiadas por cada una de las
-distintas variantes existentes */
+distintas variantes existentes
 SELECT denom_oms, idpersona
 FROM contagio
 GROUP BY denom_oms, idpersona
@@ -59,7 +59,7 @@ FROM reside r
       GROUP BY idpersona) as RA
 WHERE r.idpersona = RA.idpersona
       and r.datereside=RA.fecha
-GROUP BY p.code;
+GROUP BY p.code; */
 
 
 /* 6. Top 3 de variantes con mas contagios */
@@ -82,3 +82,20 @@ SELECT cs.name, 'Centro de Hospitalizacion' as tipo, count(DISTINCT(h.idpaciente
 FROM hospitalizado h
         join centro_salud cs on cs.code = h.codecentroh
 GROUP BY h.codecentroh, cs.name;
+
+
+/* 8. Se quiere un reporte detallado de todos los síntomas asociados a cada uno de los
+virus-variante y se quiere conocer la vacuna más eficaz para ese virus. */
+CREATE VIEW Reporte8 as
+SELECT t.denom_oms as variante, se.description as sintoma, e.name as vacuna_mas_efectiva
+FROM  tiene t
+        join sintoma_efecto se on se.code = t.codesintoma,
+        (SELECT e.denom_oms,v.name
+        FROM eficacia e
+             join vacuna v on e.codevacuna = v.code,
+                (SELECT denom_oms, max(percentage) percentage
+                FROM eficacia
+                GROUP BY denom_oms) as max
+        WHERE e.denom_oms = max.denom_oms and
+              e.percentage = max.percentage) as e
+WHERE e.denom_oms = t.denom_oms;

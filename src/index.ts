@@ -19,7 +19,7 @@ import {router as hospitalizadoRoutes} from './Routes/HospitalizadoR';
 import {router as eficaciaRoutes} from './Routes/EficaciaR';
 import {router as consisteRoutes} from './Routes/ConsisteR';
 import {router as asignadoRoutes} from './Routes/AsignadoR';
-
+import {router as reporteRoutes} from './Routes/ReportesR';
 
 const app = express();
 
@@ -56,6 +56,7 @@ app.use('/hospitalizado', hospitalizadoRoutes);
 app.use('/eficacia', eficaciaRoutes);
 app.use('/consiste', consisteRoutes);
 app.use('/asignado', asignadoRoutes);
+app.use('/reportes', reporteRoutes);
 
 
 
