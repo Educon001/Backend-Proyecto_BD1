@@ -252,17 +252,18 @@ CREATE TABLE Hospitalizado(
 );
 
 ---------------------------------------------TRIGGERS------------------------------------------------------
-
+drop function insert_medico() CASCADE;
 CREATE FUNCTION  insert_medico()
     RETURNS TRIGGER
     LANGUAGE plpgsql
 AS
 $$
 BEGIN
-    IF new.Type = 'Medico' THEN
+    IF new.Type = 'Medico' AND old.Type<>new.Type THEN
         INSERT INTO medico (id_medico) VALUES (new.ID_Persona);
-    ELSE
-        DELETE FROM medico where id_medico=new.ID_Persona;
+    ELSE IF new.Type <> 'Medico' THEN
+            DELETE FROM medico where id_medico=new.ID_Persona;
+        END IF;
     END IF;
     RETURN new;
 end;
@@ -272,13 +273,13 @@ CREATE TRIGGER Insert_Personal_Salud_Medico
     AFTER INSERT
     ON Personal_Salud
     FOR EACH ROW
-EXECUTE PROCEDURE insert_medico();
+    EXECUTE PROCEDURE insert_medico();
 
 CREATE TRIGGER Alter_Personal_Salud_Medico
     AFTER UPDATE
     ON Personal_Salud
     FOR EACH ROW
-EXECUTE procedure insert_medico();
+    EXECUTE procedure insert_medico();
 
 CREATE FUNCTION delete_medico()
     RETURNS TRIGGER
@@ -295,7 +296,7 @@ CREATE TRIGGER Delete_Personal_Salud_Medico
     BEFORE DELETE
     ON Personal_Salud
     FOR EACH ROW
-EXECUTE PROCEDURE delete_medico();
+    EXECUTE PROCEDURE delete_medico();
 
 CREATE FUNCTION  insert_paciente()
     RETURNS TRIGGER
@@ -314,10 +315,44 @@ CREATE TRIGGER create_paciente_hospitalizado
     BEFORE INSERT
     ON Hospitalizado
     FOR EACH ROW
-EXECUTE PROCEDURE insert_paciente();
+    EXECUTE PROCEDURE insert_paciente();
 
 CREATE TRIGGER create_paciente_tratamiento
     BEFORE INSERT
     ON Requiere
     FOR EACH ROW
-EXECUTE PROCEDURE insert_paciente();
+    EXECUTE PROCEDURE insert_paciente();
+
+CREATE FUNCTION delete_ps()
+    RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    DELETE FROM personal_salud WHERE id_persona=old.ID;
+    RETURN old;
+end;
+$$;
+
+CREATE TRIGGER Delete_Persona_ps
+    BEFORE DELETE
+    ON Persona
+    FOR EACH ROW
+    EXECUTE PROCEDURE delete_ps();
+
+CREATE FUNCTION delete_paciente()
+    RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    DELETE FROM paciente WHERE id_persona=old.ID;
+    RETURN old;
+end;
+$$;
+
+CREATE TRIGGER Delete_Persona_paciente
+    BEFORE DELETE
+    ON Persona
+    FOR EACH ROW
+    EXECUTE PROCEDURE delete_paciente();
