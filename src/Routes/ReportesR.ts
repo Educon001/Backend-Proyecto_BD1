@@ -11,6 +11,6 @@ router.get('/6',ReportesC.Reporte6);
 
 router.get('/7',ReportesC.Reporte7);
 
-router.get('/8',ReportesC.Reporte7);
+router.get('/8',ReportesC.Reporte8);
 
 router.get('/9',ReportesC.Reporte9);
