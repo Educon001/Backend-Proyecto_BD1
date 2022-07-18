@@ -1,7 +1,7 @@
 export class Tratamiento {
-  constructor(
-      public description: string,
-      public code?: number,
-  ) {
-  }
+   constructor(
+       public description: string,
+       public code?: number,
+   ) {
+   }
 }

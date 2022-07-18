@@ -27,13 +27,13 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('TEST');
+   res.send('TEST');
 });
 
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
-  console.log(`app started on port ${PORT}`);
+   console.log(`app started on port ${PORT}`);
 });
 
 //configure the app.

@@ -1,8 +1,8 @@
 export class Municipio {
-  constructor(
-      public name: string,
-      public codeEstado: number,
-      public code?: number,
-  ) {
-  }
+   constructor(
+       public name: string,
+       public codeEstado: number,
+       public code?: number,
+   ) {
+   }
 }

@@ -1,9 +1,9 @@
 export class Pais {
-  constructor(
-      public name: string,
-      public code?: number,
-  ) {
-  }
+   constructor(
+       public name: string,
+       public code?: number,
+   ) {
+   }
 
 }
 
