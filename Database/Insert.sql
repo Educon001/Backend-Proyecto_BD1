@@ -23,47 +23,60 @@ INSERT INTO virus_variante VALUES ('Alpha', 'B.1.1.7',2019, 5, 'VOC',1 );
 INSERT INTO virus_variante VALUES ('Beta', 'B.1.35', 2020, 8, 'VOI',7);
 INSERT INTO virus_variante VALUES ('Gamma', 'P.1', 2021, 2, 'VUM',13);
 INSERT INTO virus_variante VALUES ('Omicron', 'B.1.1.529.1', 2021, 11, 'VOI',3);
-
+----------------------------------
+INSERT INTO vacuna VALUES (default,'Comirnaty',1, 2,'ARNm', 'Pfizer-BioNTech',11);
+INSERT INTO vacuna VALUES (default,'AstraZeneca',7, 3,'Vector viral', 'University of Oxford',16);
+INSERT INTO vacuna VALUES (default,'Spikevax',12, 3,'Subunidades proteicas', 'Moderna',15);
+----------------------------------
+INSERT INTO eficacia VALUES ('Alpha',1,64.76);
+INSERT INTO eficacia VALUES ('Alpha',2,83.44);
+INSERT INTO eficacia VALUES ('Beta',3,92.32);
+INSERT INTO eficacia VALUES ('Beta',1,95.51);
+INSERT INTO eficacia VALUES ('Gamma',3,70);
+INSERT INTO eficacia VALUES ('Gamma',2,76.2);
+INSERT INTO eficacia VALUES ('Omicron',3,85);
+INSERT INTO eficacia VALUES ('Omicron',2,35);
+----------------------------------
 
 /*
 B. Se debe almacenar por lo menos 5 estados con 5 municipios cada uno.
 */
+
 INSERT INTO estado_provincia VALUES (default, 'Caracas', 1);
 INSERT INTO municipio VALUES (default, 'Libertador', 1);
 INSERT INTO municipio VALUES (default, 'Sucre', 1);
 INSERT INTO municipio VALUES (default, 'El Hatillo', 1);
 INSERT INTO municipio VALUES (default, 'Baruta', 1);
 INSERT INTO municipio VALUES (default, 'Chacao', 1);
------------
-
+----------------------------------
 INSERT INTO estado_provincia VALUES (default, 'Bogotá',2);
 INSERT INTO municipio VALUES (default, 'Soacha', 2);
 INSERT INTO municipio VALUES (default, 'Mosquera', 2);
 INSERT INTO municipio VALUES (default, 'Cota', 2);
 INSERT INTO municipio VALUES (default, 'El Rosal', 2);
 INSERT INTO municipio VALUES (default, 'Tabio', 2);
----------------------
+----------------------------------
 INSERT INTO estado_provincia VALUES (default, 'Quito',3);
 INSERT INTO municipio VALUES (default, 'Nayón', 3);
 INSERT INTO municipio VALUES (default, 'Zámbiza', 3);
 INSERT INTO municipio VALUES (default, 'Puéllaro', 3);
 INSERT INTO municipio VALUES (default, 'Chavezpamba', 3);
 INSERT INTO municipio VALUES (default, 'Atahualpa', 3);
------------
+----------------------------------
 INSERT INTO estado_provincia VALUES (default, 'Buenos Aires',5);
 INSERT INTO municipio VALUES (default, 'Bolívar', 4);
 INSERT INTO municipio VALUES (default, 'Colón', 4);
 INSERT INTO municipio VALUES (default, 'Dolores', 4);
 INSERT INTO municipio VALUES (default, 'Mercedes', 4);
 INSERT INTO municipio VALUES (default, 'Mar Chiquita', 4);
-----------------
+----------------------------------
 INSERT INTO estado_provincia VALUES (default, 'New York',8);
 INSERT INTO municipio VALUES (default, 'Bronx', 5);
 INSERT INTO municipio VALUES (default, 'Brooklyn', 5);
 INSERT INTO municipio VALUES (default, 'Manhattan', 5);
 INSERT INTO municipio VALUES (default, 'Queens', 5);
 INSERT INTO municipio VALUES (default, 'Staten Island', 5);
---------------------------
+----------------------------------
 
 /*
 C. Se tiene información de al menos 10 pacientes.
@@ -87,35 +100,17 @@ INSERT INTO persona VALUES ('V16553823','Camila','Torres','M','1995-11-12');
 INSERT INTO persona VALUES ('V15553823','Jesus','Ferran','N/A','1992-10-12');
 INSERT INTO persona VALUES ('V14553823','Marie','Curie','F','1998-10-12');
 INSERT INTO persona VALUES ('E13553823','Lana','Roberts','F','1980-10-01');
-------
--- INSERT INTO paciente VALUES ('V29554823');
--- INSERT INTO paciente VALUES ('V29555823');
--- INSERT INTO paciente VALUES ('V29585647');
--- INSERT INTO paciente VALUES ('V29558989');
--- INSERT INTO paciente VALUES ('V28553829');
--- INSERT INTO paciente VALUES ('V25553823');
--- INSERT INTO paciente VALUES ('V23553823');
--- INSERT INTO paciente VALUES ('V22553825');
--- INSERT INTO paciente VALUES ('V25553826');
--- INSERT INTO paciente VALUES ('V21553827');
--------------
+
 /*
 D. Se tiene que almacenar 5 médicos con todos sus datos y sus relaciones.
-'Asistente medico','Enfermeria', 'Medico'*/
+*/
 
 INSERT INTO personal_salud VALUES ('V19553823', 'micorreo@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('V19553824', 'pepito22@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('V18553324', 'st02_m@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('V17553823', 'micorreo1@gmail.com','Medico');
 INSERT INTO personal_salud VALUES ('V16553823', 'micorreo_2002@gmail.com','Medico');
-INSERT INTO personal_salud VALUES ('E13553823', 'lroberts80@gmail.com','Medico');
-INSERT INTO personal_salud VALUES ('V14553823', 'mcurie@hotmail.com', 'Medico');
-----------------
--- INSERT INTO medico VALUES ('V19553823');
--- INSERT INTO medico VALUES ('V19553824');
--- INSERT INTO medico VALUES ('V18553324');
--- INSERT INTO medico VALUES ('V17553823');
--- INSERT INTO medico VALUES ('V16553823');
+----------------------------------
 
 /*
 E. Se deben almacenar 5 centro de salud con su ubicación, dos (2) deben ser de
@@ -130,27 +125,44 @@ INSERT INTO centro_salud VALUES (default,'Centro Clinico Razeti', 'Av Caracas, d
 ----------------------------------
 INSERT INTO centro_hospitalizacion VALUES (1);
 INSERT INTO centro_hospitalizacion VALUES (2);
-----
+----------------------------------
 INSERT INTO centro_vacunacion VALUES (3);
 INSERT INTO centro_vacunacion VALUES (4);
 INSERT INTO centro_vacunacion VALUES (5);
+----------------------------------
 
+/* F. Se necesitan almacenar dos (2) Tratamientos con todos sus datos y con los
+medicamentos que lo conformar, así como al menos dos (2) pacientes con sus
+tratamientos. */
 
-INSERT INTO vacuna VALUES (default,'Comirnaty',1, 2,'ARNm', 'Pfizer-BioNTech',11);
-INSERT INTO vacuna VALUES (default,'AstraZeneca',7, 3,'Vector viral', 'University of Oxford',16);
-INSERT INTO vacuna VALUES (default,'Spikevax',12, 3,'Subunidades proteicas', 'Moderna',15);
-
+INSERT INTO tratamiento VALUES (default, 'Tratamiento para covid leve');
+INSERT INTO tratamiento VALUES (default, 'Tratamiento para covid fuerte');
+----------------------------------
+INSERT INTO medicamento VALUES (default, 'Atamel Forte 650mg', 'Acetaminofen', 650);
+INSERT INTO medicamento VALUES (default, 'Brugesic 400mg', 'Ibuprofeno', 400);
+INSERT INTO medicamento VALUES (default, 'Dexametazona Decobel 0.5mg', 'Dexametazona', 0.5);
+INSERT INTO medicamento VALUES (default, 'Azitromicina Calox 500mg', 'Azitromicina', 500);
+INSERT INTO medicamento VALUES (default, 'Tachipirin 250mg', 'Acetaminofen', 250);
+INSERT INTO medicamento VALUES (default, 'Clindamicina 300mg capsulas La Sante', 'Clindamicina', 300);
+----------------------------------
+INSERT INTO consiste VALUES (1,1,5,'Cada 8 horas',1);
+INSERT INTO consiste VALUES (1,4,4,'Cada 12 horas',1);
+INSERT INTO consiste VALUES (1,2,6,'Uno al dia',1);
+INSERT INTO consiste VALUES (2,3,7,'Cada 12 horas',1);
+INSERT INTO consiste VALUES (2,5,3,'Una vez al dia',2);
+INSERT INTO consiste VALUES (2,6,6,'Cada 12 horas',1);
+----------------------------------
+INSERT INTO requiere VALUES (1,'V29554863','2022-07-01','Finalizado');
+INSERT INTO requiere VALUES (2,'V29555823','2022-07-16','En curso');
+----------------------------------
+--Otras inserciones
+----------------------------------
 INSERT INTO vacunada VALUES ('V29558989',1,3,'V19553824','2022-05-06',1);
 INSERT INTO vacunada VALUES ('V23553823',1,5,'V17553823','2022-05-13',1);
 INSERT INTO vacunada VALUES ('V29554863',1,5,'V17553823','2022-06-06',2);
 INSERT INTO vacunada VALUES ('V25553826',2,3,'V19553824','2021-03-13',1);
 INSERT INTO vacunada VALUES ('V25553826',2,5,'V17553823','2021-04-13',2);
-
-INSERT INTO tratamiento VALUES (1, 'Tratamiento');
-
-INSERT INTO requiere VALUES (1,'V29554863','2022-07-01','En curso');
-INSERT INTO requiere VALUES (1,'E13553823','2022-06-12','Finalizado');
-
+----------------------------------
 INSERT INTO contagio VALUES ('V29554863','Alpha','2021-03-12',6,false);
 INSERT INTO contagio VALUES ('V29555823','Alpha','2020-05-23',8,true);
 INSERT INTO contagio VALUES ('V29585647','Alpha','2020-02-16',10,true);
@@ -159,22 +171,13 @@ INSERT INTO contagio VALUES ('V29558989','Gamma','2021-11-02',5,true);
 INSERT INTO contagio VALUES ('V28553829','Omicron','2022-01-22',12,true);
 INSERT INTO contagio VALUES ('V25553826','Omicron','2022-04-28',7,true);
 INSERT INTO contagio VALUES ('V22553825','Gamma','2022-01-08',2,false);
-
-INSERT INTO hospitalizado VALUES ('V29555823',1,'2020-05-24');
-INSERT INTO hospitalizado VALUES ('V29585647',1,'2022-07-16');
-
+----------------------------------
+INSERT INTO hospitalizado VALUES ('V29555823',1,'2022-07-16');
+INSERT INTO hospitalizado VALUES ('V29585647',1,'2020-05-24');
+----------------------------------
 INSERT INTO reside VALUES (1,'V29554863','2001-09-23');
 INSERT INTO reside VALUES (3,'V29558989','2011-09-23');
-
-INSERT INTO eficacia VALUES ('Alpha',1,64.76);
-INSERT INTO eficacia VALUES ('Alpha',2,83.44);
-INSERT INTO eficacia VALUES ('Beta',3,92.32);
-INSERT INTO eficacia VALUES ('Beta',1,95.51);
-INSERT INTO eficacia VALUES ('Gamma',3,70);
-INSERT INTO eficacia VALUES ('Gamma',2,76.2);
-INSERT INTO eficacia VALUES ('Omicron',3,85);
-INSERT INTO eficacia VALUES ('Omicron',2,35);
-
+----------------------------------
 INSERT INTO sintoma_efecto VALUES (default,'Dolor de cabeza');
 INSERT INTO sintoma_efecto VALUES (default,'Tos');
 INSERT INTO sintoma_efecto VALUES (default,'Congestion nasal');
@@ -184,7 +187,7 @@ INSERT INTO sintoma_efecto VALUES (default,'Diarrea');
 INSERT INTO sintoma_efecto VALUES (default,'Perdida de gusto');
 INSERT INTO sintoma_efecto VALUES (default,'Dolor de garganta');
 INSERT INTO sintoma_efecto VALUES (default,'Disnea');
-
+----------------------------------
 INSERT INTO tiene VALUES (1,'Alpha');
 INSERT INTO tiene VALUES (2,'Alpha');
 INSERT INTO tiene VALUES (3,'Alpha');
@@ -206,4 +209,3 @@ INSERT INTO tiene VALUES (3,'Omicron');
 INSERT INTO tiene VALUES (5,'Omicron');
 INSERT INTO tiene VALUES (8,'Omicron');
 INSERT INTO tiene VALUES (9,'Omicron');
-

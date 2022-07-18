@@ -4,7 +4,7 @@ CREATE DATABASE covid_shield;
 
 
 --DOMAINS
-CREATE DOMAIN COVID_DATE AS DATE CHECK (VALUE BETWEEN '2019-01-01' AND now());
+CREATE DOMAIN COVID_DATE AS DATE CHECK (VALUE BETWEEN '2019-01-01' AND now()); --Fechas desde el año de origen del covid hasta la actualidad
 CREATE DOMAIN DATE_RANGE AS DATE CHECK (VALUE BETWEEN '1900-01-01' AND now());
 
 --------------------------ENTIDADES------------------------------
@@ -12,7 +12,7 @@ CREATE TABLE Pais(
     Code SMALLSERIAL,
     Name varchar(60) NOT NULL ,
     CONSTRAINT Pais_pk PRIMARY KEY (Code),
-    CONSTRAINT Pais_Name_check CHECK(Name NOT SIMILAR TO '%[0-9]%')
+    CONSTRAINT Pais_Name_check CHECK(Name NOT SIMILAR TO '%[0-9]%') --El nombre de un pais no debe contener numeros
 );
 
 CREATE TABLE Estado_Provincia(
@@ -21,7 +21,7 @@ CREATE TABLE Estado_Provincia(
     CodePais SMALLINT NOT NULL ,
     CONSTRAINT EstadoProvincia_pk PRIMARY KEY (Code),
     CONSTRAINT EstadoProvincia_Pais_FK FOREIGN KEY (CodePais) REFERENCES Pais(Code),
-    CONSTRAINT Persona_Name_check CHECK(Name NOT SIMILAR TO '%[0-9]%')
+    CONSTRAINT Persona_Name_check CHECK(Name NOT SIMILAR TO '%[0-9]%') --El nombre de un estado no debe contener numeros
 );
 
 CREATE TABLE Municipio(
@@ -42,9 +42,9 @@ CREATE TABLE Persona(
     HighRisk BOOLEAN,
     CONSTRAINT Persona_pk PRIMARY KEY (ID),
     CONSTRAINT Persona_sex_check CHECK(Sex IN ('M','F','N/A')),
-    CONSTRAINT Persona_Name_check CHECK(Name NOT SIMILAR TO '%[0-9]%'),
-    CONSTRAINT Persona_LastName_check CHECK(LastName NOT SIMILAR TO '%[0-9]%'),
-    CONSTRAINT Persona_Cedula_check CHECK (ID ~* '^[VE]{1}[0-9]+$')
+    CONSTRAINT Persona_Name_check CHECK(Name NOT SIMILAR TO '%[0-9]%'), --Los nombres no pueden contener numeros
+    CONSTRAINT Persona_LastName_check CHECK(LastName NOT SIMILAR TO '%[0-9]%'), --Los apellidos no pueden contener numeros
+    CONSTRAINT Persona_Cedula_check CHECK (ID ~* '^[VE]{1}[0-9]+$') --Las cedulas deben seguir el formato V/E seguida de numeros
 );
 
 CREATE TABLE Paciente(
@@ -73,7 +73,7 @@ CREATE TABLE Personal_Salud(
     Email VARCHAR(50),
     Type VARCHAR(16) NOT NULL ,
     CONSTRAINT PersonalSalud_pk PRIMARY KEY (ID_Persona),
-    CONSTRAINT PersonalSalud_Email_check CHECK (Email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'),
+    CONSTRAINT PersonalSalud_Email_check CHECK (Email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'), --Formato de correo electronico
     CONSTRAINT PersonalSalud_Persona_fk FOREIGN KEY (ID_Persona) REFERENCES persona(ID),
     CONSTRAINT PersonalSalud_type_check CHECK(Type IN ('Asistente medico','Enfermeria', 'Medico'))
 );
@@ -193,11 +193,10 @@ CREATE TABLE Contagio(
 CREATE TABLE Asignado (
     IDPersonalSalud VARCHAR(10),
     CodeCentroSalud INT,
-    DateAsignado DATE,
+    DateAsignado DATE_RANGE,
     CONSTRAINT Personal_AsignadoPK FOREIGN KEY (IDPersonalSalud) REFERENCES Personal_Salud(ID_Persona),
     CONSTRAINT CentroSalud_AsignadoFK FOREIGN KEY (CodeCentroSalud) REFERENCES Centro_Salud(Code),
-    CONSTRAINT PersonalCentroSaludDate_AsignadoPK PRIMARY KEY (IDPersonalSalud, CodeCentroSalud, DateAsignado),
-    CONSTRAINT Asignado_DateAsignado_check CHECK(DateAsignado BETWEEN '1900-01-01' AND now())
+    CONSTRAINT PersonalCentroSaludDate_AsignadoPK PRIMARY KEY (IDPersonalSalud, CodeCentroSalud, DateAsignado)
 );
 
 CREATE TABLE Tiene(
@@ -252,7 +251,7 @@ CREATE TABLE Hospitalizado(
 );
 
 ---------------------------------------------TRIGGERS------------------------------------------------------
-CREATE FUNCTION  insert_medico()
+CREATE FUNCTION  insert_medico() --Inserta un medico cuando se crea un personal de salud de tipo 'Medico'
     RETURNS TRIGGER
     LANGUAGE plpgsql
 AS
@@ -271,7 +270,7 @@ CREATE TRIGGER Insert_Personal_Salud_Medico
     FOR EACH ROW
     EXECUTE PROCEDURE insert_medico();
 
-CREATE FUNCTION  update_medico()
+CREATE FUNCTION  update_medico() --Inserta o elimina un medico cuando se actualiza un personal de salud dependiendo del tipo
     RETURNS TRIGGER
     LANGUAGE plpgsql
 AS
@@ -293,7 +292,7 @@ CREATE TRIGGER Alter_Personal_Salud_Medico
     FOR EACH ROW
     EXECUTE procedure update_medico();
 
-CREATE FUNCTION delete_medico()
+CREATE FUNCTION delete_medico() --Elimina un medico cuando se elimina un personal de salud de tipo 'Medico'
     RETURNS TRIGGER
     LANGUAGE plpgsql
 AS
@@ -310,7 +309,7 @@ CREATE TRIGGER Delete_Personal_Salud_Medico
     FOR EACH ROW
     EXECUTE PROCEDURE delete_medico();
 
-CREATE FUNCTION  insert_paciente()
+CREATE FUNCTION  insert_paciente() --Inserta un paciente cuando una persona esta siendo hospitalizada y/o tratada por primera vez
     RETURNS TRIGGER
     LANGUAGE plpgsql
 AS
@@ -335,7 +334,7 @@ CREATE TRIGGER create_paciente_tratamiento
     FOR EACH ROW
     EXECUTE PROCEDURE insert_paciente();
 
-CREATE FUNCTION delete_ps()
+CREATE FUNCTION delete_ps() --Elimina un personal de salud con la misma cedula al eliminar una persona
     RETURNS TRIGGER
     LANGUAGE plpgsql
 AS
@@ -352,7 +351,7 @@ CREATE TRIGGER Delete_Persona_ps
     FOR EACH ROW
     EXECUTE PROCEDURE delete_ps();
 
-CREATE FUNCTION delete_paciente()
+CREATE FUNCTION delete_paciente() --Elimina un paciente con la misma cedula al eliminar una persona
     RETURNS TRIGGER
     LANGUAGE plpgsql
 AS
