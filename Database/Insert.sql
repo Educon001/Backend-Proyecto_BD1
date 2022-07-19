@@ -162,6 +162,7 @@ INSERT INTO vacunada VALUES ('V23553823',1,5,'V17553823','2022-05-13',1);
 INSERT INTO vacunada VALUES ('V29554863',1,5,'V17553823','2022-06-06',2);
 INSERT INTO vacunada VALUES ('V25553826',2,3,'V19553824','2021-03-13',1);
 INSERT INTO vacunada VALUES ('V25553826',2,5,'V17553823','2021-04-13',2);
+INSERT INTO vacunada VALUES ('V29558989',2,5,'V17553823','2021-04-15',2);
 ----------------------------------
 INSERT INTO contagio VALUES ('V29554863','Alpha','2021-03-12',6,false);
 INSERT INTO contagio VALUES ('V29555823','Alpha','2020-05-23',8,true);
@@ -171,6 +172,7 @@ INSERT INTO contagio VALUES ('V29558989','Gamma','2021-11-02',5,true);
 INSERT INTO contagio VALUES ('V28553829','Omicron','2022-01-22',12,true);
 INSERT INTO contagio VALUES ('V25553826','Omicron','2022-04-28',7,true);
 INSERT INTO contagio VALUES ('V22553825','Gamma','2022-01-08',2,false);
+INSERT INTO contagio VALUES ('V29554863','Alpha','2022-03-12',6,false);
 ----------------------------------
 INSERT INTO hospitalizado VALUES ('V29555823',1,'2022-07-16');
 INSERT INTO hospitalizado VALUES ('V29585647',1,'2020-05-24');
@@ -191,6 +193,7 @@ INSERT INTO sintoma_efecto VALUES (default,'Disnea');
 INSERT INTO tiene VALUES (1,'Alpha');
 INSERT INTO tiene VALUES (2,'Alpha');
 INSERT INTO tiene VALUES (3,'Alpha');
+INSERT INTO tiene VALUES (6,'Alpha');
 INSERT INTO tiene VALUES (7,'Alpha');
 INSERT INTO tiene VALUES (5,'Alpha');
 INSERT INTO tiene VALUES (1,'Beta');

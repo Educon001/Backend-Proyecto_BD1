@@ -14,7 +14,7 @@ WHERE CS.code IN (
     HAVING count(Distinct V.idpersona) = max ((
             SELECT max(NumPersonas.cuenta)
             FROM (
-                     SELECT count(DISTINCT V.idpersona) AS cuenta --N° personas de sexo 'M'
+                     SELECT count(DISTINCT V.idpersona) AS cuenta --N° personas de sexo 'M' vacunados con ARNm
                      FROM vacunada V
                               JOIN persona P ON V.idpersona = P.id
                               JOIN vacuna VAC ON V.codevacuna = VAC.code

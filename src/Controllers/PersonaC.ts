@@ -63,6 +63,7 @@ export async function createPersona(req: Request, res: Response) {
 //Crear personal salud.
 export async function createPersonalSalud(req: Request, res: Response) {
    console.info('Attempting to create health personnel with input', req.body);
+   try {
    let persona = await db().
        query(`SELECT *
              FROM Persona
@@ -70,7 +71,6 @@ export async function createPersonalSalud(req: Request, res: Response) {
    let ps = new PersonalSalud(req.body.email, req.body.type, persona.rows[0].id,
        persona.rows[0].name, persona.rows[0].lastName, persona.rows[0].sex,
        persona.rows[0].birthdate, persona.rows[0].highRisk);
-   try {
       console.time(`Inserted health personnel with id ${ps.id}`);
       await db().
           query('INSERT INTO Personal_Salud VALUES ($1, $2, $3)',
