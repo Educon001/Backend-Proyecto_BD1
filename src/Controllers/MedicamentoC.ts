@@ -41,7 +41,7 @@ export async function updateMedicamento(req: Request, res: Response) {
 
    let {medicamentoCode} = req.params;
    let medicamento = new Medicamento(req.body.name, req.body.component,
-       parseInt(medicamentoCode));
+       parseInt(req.body.concentration), parseInt(medicamentoCode));
    try {
       await db().query(`UPDATE medicamento
                       SET name=$2,
@@ -51,8 +51,8 @@ export async function updateMedicamento(req: Request, res: Response) {
         `,
           [
              medicamento.code,
-             medicamento.concentration,
              medicamento.name,
+             medicamento.component,
              medicamento.concentration,
 
           ]);

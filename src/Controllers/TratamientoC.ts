@@ -22,7 +22,7 @@ export async function createTratamiento(req: Request, res: Response) {
    try {
       console.time(`Inserted tratamiento with name ${tratamiento.description}`);
       await db().
-          query('INSERT INTO vacuna VALUES (default, $1)',
+          query('INSERT INTO tratamiento VALUES (default, $1)',
               [
                  tratamiento.description]);
       console.timeEnd(

@@ -37,15 +37,15 @@ app.listen(PORT, () => {
 });
 
 //configure the app.
-app.use('/personas', personaRoutes);
-app.use('/cv', cvRoutes);
-app.use('/ch', chRoutes);
-app.use('/pais', paisRoutes);
-app.use('/estado', estadoRoutes);
-app.use('/municipio', municipioRoutes);
-app.use('/vacunada', vacunadaRoutes);
-app.use('/vacuna', vacunaRoutes);
-app.use('/tratamiento', tratamientoRoutes);
+app.use('/personas', personaRoutes);         //listo
+app.use('/cv', cvRoutes);                    //listo
+app.use('/ch', chRoutes);                    //listo
+app.use('/pais', paisRoutes);                //listo
+app.use('/estado', estadoRoutes);            //listo
+app.use('/municipio', municipioRoutes);      //listo
+app.use('/vacunada', vacunadaRoutes);        //listo
+app.use('/vacuna', vacunaRoutes);            //listo
+app.use('/tratamiento', tratamientoRoutes);  //listo
 app.use('/medicamento', medicamentoRoutes);
 app.use('/variante', varianteRoutes);
 app.use('/contagio', contagioRoutes);
@@ -56,7 +56,7 @@ app.use('/hospitalizado', hospitalizadoRoutes);
 app.use('/eficacia', eficaciaRoutes);
 app.use('/consiste', consisteRoutes);
 app.use('/asignado', asignadoRoutes);
-app.use('/reportes', reporteRoutes);
+app.use('/reportes', reporteRoutes);//A medias
 
 
 
