@@ -36,7 +36,7 @@ app.listen(PORT, () => {
    console.log(`app started on port ${PORT}`);
 });
 
-//configure the app.
+//configure the app.                         //CRUD
 app.use('/personas', personaRoutes);         //listo
 app.use('/cv', cvRoutes);                    //listo
 app.use('/ch', chRoutes);                    //listo
