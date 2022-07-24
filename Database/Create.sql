@@ -10,7 +10,7 @@ CREATE DOMAIN DATE_RANGE AS DATE CHECK (VALUE BETWEEN '1900-01-01' AND now());
 --------------------------ENTIDADES------------------------------
 CREATE TABLE Pais(
     Code SMALLSERIAL,
-    Name varchar(60) NOT NULL ,
+    Name varchar(60) NOT NULL UNIQUE ,
     CONSTRAINT Pais_pk PRIMARY KEY (Code),
     CONSTRAINT Pais_Name_check CHECK(Name NOT SIMILAR TO '%[0-9]%') --El nombre de un pais no debe contener numeros
 );

@@ -57,7 +57,7 @@ export async function updateVariante(req: Request, res: Response) {
                       WHERE denom_oms = $1
         `,
           [
-             variante.demomOMS, variante.linaje, variante.originYear,
+             variante.demomOMS, variante.linaje, variante.originYear,variante.originMonth,
              variante.clasification, variante.codePais,
           ]);
       return res.json(variante);

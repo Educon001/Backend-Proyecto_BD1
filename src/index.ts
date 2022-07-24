@@ -46,8 +46,8 @@ app.use('/municipio', municipioRoutes);      //listo
 app.use('/vacunada', vacunadaRoutes);        //listo
 app.use('/vacuna', vacunaRoutes);            //listo
 app.use('/tratamiento', tratamientoRoutes);  //listo
-app.use('/medicamento', medicamentoRoutes);
-app.use('/variante', varianteRoutes);
+app.use('/medicamento', medicamentoRoutes);  //listo
+app.use('/variante', varianteRoutes);        //listo
 app.use('/contagio', contagioRoutes);
 app.use('/reside', resideRoutes);
 app.use('/tiene', tieneRoutes);
