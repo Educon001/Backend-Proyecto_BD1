@@ -25,6 +25,30 @@ WHERE CS.code IN (
 );
 
 
+/* 1. Por estado/provincia indicar la cantidad de pacientes que han sido contagiados más
+de una vez y si estuvo hospitalizado o guardó reposo en casa */
+CREATE VIEW Reporte1 AS
+SELECT ep.name as Estado_Provincia, p.name as Pais, count(distinct c2H.idpersona) as cantidad, sum(c2H.hospitalizado) as Hospitalizados, (count(distinct c2H.idpersona) - sum(c2H.hospitalizado)) as enCasa
+FROM estado_provincia ep
+     join pais p on p.code = ep.codepais
+     join (SELECT r.codeprovincia, r.idpersona --Estado/provincia de residencia actual de cada persona
+           FROM reside r
+                    join (SELECT idpersona, max(datereside) as fecha --La fecha de residencia actual de cada persona
+                          FROM reside
+                          GROUP BY idpersona) FR on FR.idpersona=r.idpersona
+           WHERE r.datereside=FR.fecha) RA on RA.codeprovincia=ep.code
+     join (SELECT c2.idpersona, count(H.casahospitalizado) as hospitalizado --Todas las personas que se han contagiado mas de una vez y si han estado hospitalizads
+           FROM (SELECT idpersona --Todas las personas que se han contagiado mas de una vez
+                 FROM contagio
+                 GROUP BY idpersona
+                 HAVING count(*)>1) c2
+                 left join (SELECT distinct idpersona,casahospitalizado --Todas las personas que han sido hospitalizadas al menos una vez
+                            FROM contagio
+                            WHERE casahospitalizado=true) H on H.idpersona=c2.idpersona
+           GROUP BY c2.idpersona) c2H on c2H.idpersona=RA.idpersona
+GROUP BY ep.name, p.name;
+
+
 /* 2. El porcentaje de personas vacunadas por centro de vacunación que han estado
 contagiados con el virus luego de ser vacunados. */
 CREATE VIEW Reporte2 AS
@@ -42,6 +66,72 @@ FROM centro_salud cs,
     WHERE V.idpersona=C.idpersona and V.datevacuna<C.ultimo_contagio
     GROUP BY V.codecentrov) as Vac_C
 WHERE Vac.codecentrov = Vac_C.codecentrov and Vac.codecentrov=cs.code;
+
+
+/* 3. Calcular el valor de la eficacia de cada vacuna con respecto al nivel de contagio y
+mostrarlo. */
+CREATE VIEW Reporte3 AS
+SELECT v.code as Codigo_Vacuna, v.name as Nombre_Vacuna, v.laboratory as Laboratorio_Vacuna, (cast((Vac.cuenta-CDV.cuenta) as real)/Vac.cuenta)*100 as Eficacia --Eficacia = N° personas que no se han contagiado despues de ser vacunados / N° vacunados
+FROM vacuna v
+     join (SELECT codevacuna, count(distinct(idpersona)) as cuenta --Cantidad de personas vacunadas por vacuna
+           FROM vacunada
+           GROUP BY codevacuna) Vac on v.code=Vac.codevacuna
+     join (SELECT TV.codevacuna, count(Vac_C.ultimo_contagio) as cuenta --Por vacuna cantidad de contagiados despues de ser vacunados (incluye el 0)
+           FROM (SELECT distinct codevacuna, idpersona --Por vacuna todas las personas que se han vacunado
+                 FROM vacunada) TV
+                 left join (SELECT distinct V.codevacuna, V.idpersona ,C.ultimo_contagio --Por vacuna todas las personas que se han contagiado despues de vacunarse y la fecha de su contagio
+                            FROM vacunada V
+                                 join (SELECT idpersona, MAX(datecontagio) as ultimo_contagio --La fecha de la ultima vez que la persona se contagio
+                                       FROM contagio
+                                       GROUP BY idpersona) C on V.idpersona = C.idpersona
+                            WHERE datevacuna<C.ultimo_contagio) Vac_C on TV.codevacuna=Vac_C.codevacuna and TV.idpersona=Vac_C.idpersona
+           GROUP BY TV.codevacuna) CDV on CDV.codevacuna=v.code;
+
+
+/*. 4. Los tratamientos que se han aplicado a los pacientes que han sido contagiados.
+Además se necesita cuál es el virus y las características del mismo */
+CREATE VIEW Reporte4 AS
+SELECT p.id, p.name, p.lastname, t.code, t.description, r.date, v.denom_oms, v.clasification, v.linaje
+FROM tratamiento t
+         join requiere r on t.code = r.codetratamiento
+         join persona p on p.id = r.idpaciente
+         join contagio c on p.id = c.idpersona
+         join virus_variante v on v.denom_oms = c.denom_oms
+         join (SELECT r.idpaciente, max(c.datecontagio) as fechacontagio --Fecha del contagio para el cual se esta aplicando cada trataiento por persona
+               FROM requiere r
+                        join paciente p on p.id_persona = r.idpaciente
+                        join contagio c on p.id_persona = c.idpersona
+               WHERE c.datecontagio<r.date
+               GROUP BY r.idpaciente) as FCTP on FCTP.idpaciente=p.id
+WHERE c.datecontagio=FCTP.fechacontagio
+ORDER BY r.date;
+
+
+/* 5. Imprima los países donde vivan más personas contagiadas por cada una de las
+distintas variantes existentes */
+CREATE VIEW CPVP AS --Numero de contagios por variante por pais
+SELECT c.denom_oms, PR.codepais, count(distinct c.idpersona) as Ncontagios
+FROM contagio c
+         join (SELECT ep.codepais, r.idpersona --Pais de residencia actual de cada persona
+               FROM reside r
+                        join estado_provincia ep on ep.code = r.codeprovincia
+                        join (SELECT idpersona, max(datereside) as fecha --Fecha de recidencia actual de cada persona
+                              FROM reside
+                              GROUP BY idpersona) RA on RA.idpersona=r.idpersona
+               WHERE r.datereside=RA.fecha) PR on c.idpersona=PR.idpersona
+GROUP BY c.denom_oms, PR.codepais;
+
+CREATE VIEW Reporte5 AS
+SELECT CPVP.denom_oms as variante, p.name as pais, CPVP.Ncontagios
+FROM pais p
+     join  CPVP on CPVP.codepais=p.code
+     join (SELECT denom_oms, max(Ncontagios) as maxContagios --Maximo numero de contagios por variante
+           FROM CPVP
+           GROUP BY denom_oms) CPV on CPV.denom_oms=CPVP.denom_oms
+WHERE CPVP.Ncontagios=CPV.maxContagios --Comprobamos que el numero de contagios por variante por pais sea igual al maximo
+ORDER BY variante;
+
+
 
 /* 6. Top 3 de variantes con mas contagios */
 CREATE VIEW Reporte6 as
@@ -79,4 +169,5 @@ FROM  tiene t
                 GROUP BY denom_oms) as max
         WHERE e.denom_oms = max.denom_oms and
               e.percentage = max.percentage) as e
-WHERE e.denom_oms = t.denom_oms;
+WHERE e.denom_oms = t.denom_oms
+ORDER BY variante;
