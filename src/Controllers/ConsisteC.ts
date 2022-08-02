@@ -85,7 +85,8 @@ export async function updateConsiste(req: Request, res: Response) {
 
           [
              consiste.codeTratamiento,
-             consiste.codeMedicamento]);
+             consiste.codeMedicamento,
+             consiste.cantDays, consiste.frecuency, consiste.dosis]);
       return res.json(consiste);
    } catch (e) {
       console.error(e);
