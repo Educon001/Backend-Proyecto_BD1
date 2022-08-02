@@ -42,10 +42,11 @@ export async function createTiene(req: Request, res: Response) {
       console.time(
           `Inserted tiene with code ${tiene.codeSintoma, tiene.denomOMS}`);
       await db().
-          query('INSERT INTO tiene VALUES ($1, $2, $3)',
+          query('INSERT INTO tiene VALUES ($1, $2)',
               [
                  tiene.codeSintoma,
-                 tiene.denomOMS]);
+                 tiene.denomOMS
+                  ]);
       console.timeEnd(
           `Inserted tiene with code ${tiene.codeSintoma, tiene.denomOMS}`);
       return res.json(tiene);

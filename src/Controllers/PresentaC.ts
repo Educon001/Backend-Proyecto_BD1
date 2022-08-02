@@ -8,7 +8,7 @@ import {Request, Response} from 'express';
 export async function getPresenta(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM presenta`) as QueryResult<Presenta>;
+                                      FROM presenta`) as QueryResult<Presenta>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -21,8 +21,8 @@ export async function getPresentaVacuna(req: Request, res: Response) {
    try {
       let results = await db().
           query(`SELECT si.code, si.description
-                 FROM presenta p 
-                          join sintoma_efecto si on si.code  = p.codesintoma 
+                 FROM presenta p
+                          join sintoma_efecto si on si.code = p.codesintoma
                  WHERE p.codevacuna = $1`,
               [presentaVacuna]) as QueryResult<Presenta>;
       return res.json(results.rows);
@@ -31,6 +31,7 @@ export async function getPresentaVacuna(req: Request, res: Response) {
       return res.status(400).json({message: 'Bad Request'});
    }
 };
+
 //Crear presenta
 
 export async function createPresenta(req: Request, res: Response) {
@@ -65,10 +66,10 @@ export async function updatePresenta(req: Request, res: Response) {
        parseInt(presentaCodeSintoma));
    try {
       await db().query(`UPDATE presenta
-                      SET codesintoma=$1
-                      WHERE codevacuna = $1
-                        and codesintoma = $2
-        `,
+                        SET codesintoma=$2
+                        WHERE codevacuna = $1
+                          and codesintoma = $2
+          `,
 
           [
              presenta.codeVacuna,
@@ -83,17 +84,17 @@ export async function updatePresenta(req: Request, res: Response) {
 //Borrar Presenta
 export async function deletePresenta(req: Request, res: Response) {
    let {
-      tieneCodeSintoma,
-      tieneDenomOMS,
+      presentaCodeVacuna,
+      presentaCodeSintoma,
    } = req.params;
    try {
       await db().query(`DELETE
-                      FROM tiene
-                      WHERE codesintoma = $1
-                        and denom_oms = $2
-    `, [
-         tieneCodeSintoma,
-         tieneDenomOMS]);
+                        FROM presenta
+                        WHERE codesintoma = $1
+                          and codevacuna = $2
+      `, [
+         presentaCodeSintoma,
+         presentaCodeVacuna]);
       return res.json({message: 'ok'});
    } catch (e) {
       console.error(e);

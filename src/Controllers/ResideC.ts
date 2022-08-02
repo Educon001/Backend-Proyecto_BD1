@@ -71,9 +71,9 @@ export async function updateResidente(req: Request, res: Response) {
        new Date(resideFechaReside));
    try {
       await db().query(`UPDATE reside
-                        SET codeprovincia=$2
-                        WHERE idpersona = $1
-                          and codeprovincia = $2
+                        SET codeprovincia=$1
+                        WHERE idpersona = $2
+                          and codeprovincia = $1
                           and datereside = $3
           `,
 

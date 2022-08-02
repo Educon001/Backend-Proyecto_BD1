@@ -69,7 +69,7 @@ export async function updateEficacia(req: Request, res: Response) {
        parseFloat(req.body.percentage));
    try {
       await db().query(`UPDATE eficacia
-                      SET percentage=$5
+                      SET percentage=$3
                       WHERE denom_oms = $1
                         and codevacuna = $2
         `,

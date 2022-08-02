@@ -70,7 +70,7 @@ export async function updateHospitalizado(req: Request, res: Response) {
        new Date(hospitalizadoDateHospitalizado));
    try {
       await db().query(`UPDATE hospitalizado
-                      SET codecentroh=$1
+                      SET codecentroh=$2
                       WHERE idpaciente=$1
                         and codecentroh=$2
                         and datehospitalizado=$3`,

@@ -41,16 +41,16 @@ export async function createRequiere(req: Request, res: Response) {
        req.body.idpaciente, new Date(req.body.date), req.body.estado);
    try {
       console.time(
-          `Inserted residente with code ${requiere.codeTratamiento, requiere.idPaciente, requiere.date}`);
+          `Inserted residente with code ${requiere.codeTratamiento, requiere.idPaciente, requiere.date, requiere.estado}`);
       await db().
-          query('INSERT INTO reside VALUES ($1, $2, $3, $4)',
+          query('INSERT INTO requiere VALUES ($1, $2, $3, $4)',
               [
                  requiere.codeTratamiento,
                  requiere.idPaciente,
                  requiere.date,
                  requiere.estado]);
       console.timeEnd(
-          `Inserted requiere with code ${requiere.codeTratamiento, requiere.idPaciente, requiere.date}`);
+          `Inserted requiere with code ${requiere.codeTratamiento, requiere.idPaciente, requiere.date, requiere.estado}`);
       return res.json(requiere);
    } catch (e) {
       console.error(e);
@@ -78,6 +78,8 @@ export async function updateRequiere(req: Request, res: Response) {
           [
              requiere.codeTratamiento,
              requiere.idPaciente,
+             requiere.date,
+             requiere.estado
           ]);
       return res.json(requiere);
    } catch (e) {
