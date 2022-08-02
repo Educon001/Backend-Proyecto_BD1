@@ -18,5 +18,5 @@ router.put('/:consisteTratamiento/:consisteMedicamento',
     ConsisteC.updateConsiste);
 
 //Eliminar un Consiste
-router.delete('/:consisteTratamiento/:rconsisteMedicamento',
+router.delete('/:consisteTratamiento/:consisteMedicamento',
     ConsisteC.deleteConsiste);

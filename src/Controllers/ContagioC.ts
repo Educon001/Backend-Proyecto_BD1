@@ -88,6 +88,7 @@ export async function deleteContagiado(req: Request, res: Response) {
                       FROM contagio
                       WHERE idpersona = $1
                         and denom_oms = $2
+                        and datecontagio = $3
     `, [
          contagioPersonaId,
          contagioDenomOMS,
