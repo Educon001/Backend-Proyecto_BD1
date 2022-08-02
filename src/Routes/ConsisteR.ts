@@ -14,7 +14,7 @@ router.get('/:consisteTratamiento', ConsisteC.getConsisteTratamiento);
 router.post('/', ConsisteC.createConsiste);
 
 //Actualizar un Consiste
-router.put('/:consisteTratamiento/:rconsisteMedicamento',
+router.put('/:consisteTratamiento/:consisteMedicamento',
     ConsisteC.updateConsiste);
 
 //Eliminar un Consiste
