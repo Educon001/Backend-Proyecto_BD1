@@ -6,6 +6,9 @@ export const router = express.Router();
 //Get Requiere
 router.get('/', RequiereC.getRequiere);
 
+//Get Requiere por paciente
+router.get('/:requierePaciente', RequiereC.getRequierePaciente);
+
 //Crear un Requiere
 router.post('/', RequiereC.createRequiere);
 

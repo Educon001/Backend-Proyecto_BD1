@@ -8,7 +8,24 @@ import {Request, Response} from 'express';
 export async function getRequiere(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM requiere`) as QueryResult<Requiere>;
+                                      FROM requiere`) as QueryResult<Requiere>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
+//get Requiere por paciente
+export async function getRequierePaciente(req: Request, res: Response) {
+   let {requierePaciente} = req.params;
+   try {
+      let results = await db().
+          query(`SELECT r.codetratamiento, t.description, r.date, r.estado
+                 FROM requiere r
+                          join tratamiento t on t.code = r.codetratamiento
+                 WHERE idpaciente = $1`,
+              [requierePaciente]) as QueryResult<Requiere>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -53,11 +70,11 @@ export async function updateRequiere(req: Request, res: Response) {
        requiereidPaciente, new Date(requiereDate), req.body.estado);
    try {
       await db().query(`UPDATE requiere
-                      SET codetratamiento=$1,
-                          estado=$4
-                      WHERE codetratamiento = $1
-                        and idpaciente = $2
-                        and date = $3 `,
+                        SET codetratamiento=$1,
+                            estado=$4
+                        WHERE codetratamiento = $1
+                          and idpaciente = $2
+                          and date = $3 `,
           [
              requiere.codeTratamiento,
              requiere.idPaciente,
@@ -78,11 +95,11 @@ export async function deleteRequiere(req: Request, res: Response) {
    } = req.params;
    try {
       await db().query(`DELETE
-                      FROM requiere
-                      WHERE codetratamiento = $1
-                        and idpaciente = $2
-                        and date = $3
-    `, [
+                        FROM requiere
+                        WHERE codetratamiento = $1
+                          and idpaciente = $2
+                          and date = $3
+      `, [
          requiereCodeTratamiento,
          requiereidPaciente,
          requiereDate]);

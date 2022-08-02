@@ -1,10 +1,13 @@
 import express from 'express';
 import * as AsignadoC from '../Controllers/AsignadoC';
+import * as ResideC from '../Controllers/ResideC';
 
 export const router = express.Router();
 
 //Get Asignado
 router.get('/', AsignadoC.getAsignado);
+
+router.get('/:asignadoPersona', AsignadoC.getAsignadoPersona);
 
 //Crear un Asignado
 router.post('/', AsignadoC.createAsignado);

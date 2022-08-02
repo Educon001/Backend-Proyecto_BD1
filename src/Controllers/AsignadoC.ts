@@ -1,4 +1,4 @@
-import {Asignado} from '../Entities';
+import {Asignado, Reside} from '../Entities';
 
 import {db} from '../Config/db';
 import {QueryResult} from 'pg';
@@ -9,6 +9,22 @@ export async function getAsignado(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
                                       FROM asignado`) as QueryResult<Asignado>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
+export async function getAsignadoPersona(req: Request, res: Response) {
+   let {asignadoPersona} = req.params;
+   try {
+      let results = await db().
+          query(`SELECT c.code, c.name, a.dateasignado
+                 FROM asignado a 
+                          join centro_salud c on a.codecentrosalud = c.code 
+                 WHERE a.idpersonalsalud = $1`,
+              [asignadoPersona]) as QueryResult<Asignado>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
