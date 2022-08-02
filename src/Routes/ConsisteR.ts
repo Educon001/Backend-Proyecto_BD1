@@ -7,6 +7,9 @@ export const router = express.Router();
 //Get Consiste
 router.get('/', ConsisteC.getConsiste);
 
+//Get Consiste por tratamiento
+router.get('/:consisteTratamiento', ConsisteC.getConsisteTratamiento);
+
 //Crear un Consiste
 router.post('/', ConsisteC.createConsiste);
 

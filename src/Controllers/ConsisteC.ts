@@ -8,7 +8,28 @@ import {Request, Response} from 'express';
 export async function getConsiste(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM consiste`) as QueryResult<Consiste>;
+                                      FROM consiste`) as QueryResult<Consiste>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
+//get Consiste por tratamiento
+export async function getConsisteTratamiento(req: Request, res: Response) {
+   let {consisteTratamiento} = req.params;
+   try {
+      let results = await db().query(`SELECT c.CodeMedicamento,
+                                             m.name,
+                                             m.component,
+                                             c.CantDays,
+                                             c.Frecuency,
+                                             c.Dosis
+                                      FROM consiste c
+                                               join medicamento m on m.code = c.codemedicamento
+                                      WHERE c.codetratamiento = $1`,
+          [parseInt(consisteTratamiento)]) as QueryResult<Consiste>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -55,10 +76,12 @@ export async function updateConsiste(req: Request, res: Response) {
        req.body.frecuency, parseInt(req.body.dosis));
    try {
       await db().query(`UPDATE consiste
-                      SET cantdays=$3, frecuency=$4, dosis=$5
-                      WHERE codetratamiento=$1
-                        and codemedicamento=$2
-        `,
+                        SET cantdays=$3,
+                            frecuency=$4,
+                            dosis=$5
+                        WHERE codetratamiento = $1
+                          and codemedicamento = $2
+          `,
 
           [
              consiste.codeTratamiento,
@@ -78,10 +101,10 @@ export async function deleteConsiste(req: Request, res: Response) {
    } = req.params;
    try {
       await db().query(`DELETE
-                      FROM consiste
-                      WHERE codetratamiento=$1
-                        and codemedicamento=$2
-                        `, [
+                        FROM consiste
+                        WHERE codetratamiento = $1
+                          and codemedicamento = $2
+      `, [
          consisteTratamiento,
          consisteMedicamento]);
       return res.json({message: 'ok'});
