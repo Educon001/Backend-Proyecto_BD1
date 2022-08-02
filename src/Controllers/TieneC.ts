@@ -1,4 +1,4 @@
-import {Tiene} from '../Entities';
+import {Reside, Tiene} from '../Entities';
 
 import {db} from '../Config/db';
 import {QueryResult} from 'pg';
@@ -9,6 +9,23 @@ export async function getTiene(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
                                     FROM tiene`) as QueryResult<Tiene>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
+//get Reside por persona.
+export async function getTieneVirus(req: Request, res: Response) {
+   let {tieneVirus} = req.params;
+   try {
+      let results = await db().
+          query(`SELECT si.code, si.description
+                 FROM tiene t 
+                          join sintoma_efecto si  on si.code=t.codesintoma
+                 WHERE t.denom_oms = $1`,
+              [tieneVirus]) as QueryResult<Tiene>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);

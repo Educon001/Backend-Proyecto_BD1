@@ -1,6 +1,5 @@
 import express from 'express';
 import * as AsignadoC from '../Controllers/AsignadoC';
-import * as ResideC from '../Controllers/ResideC';
 
 export const router = express.Router();
 

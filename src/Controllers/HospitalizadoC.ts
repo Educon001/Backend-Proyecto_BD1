@@ -1,4 +1,4 @@
-import {Hospitalizado} from '../Entities';
+import {Hospitalizado, Reside} from '../Entities';
 
 import {db} from '../Config/db';
 import {QueryResult} from 'pg';
@@ -9,6 +9,22 @@ export async function getHospitalizado(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
                                     FROM hospitalizado`) as QueryResult<Hospitalizado>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
+export async function getHospitalizadoPersona(req: Request, res: Response) {
+   let {hospitalizadoPersona} = req.params;
+   try {
+      let results = await db().
+          query(`SELECT cs.code, cs.name, h.datehospitalizado 
+                 FROM hospitalizado h 
+                      join centro_salud cs on h.codecentroh = cs.code 
+                 WHERE h.idpaciente = $1`,
+              [hospitalizadoPersona]) as QueryResult<Hospitalizado>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);

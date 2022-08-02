@@ -1,4 +1,4 @@
-import {Eficacia} from '../Entities';
+import {Asignado, Eficacia} from '../Entities';
 
 import {db} from '../Config/db';
 import {QueryResult} from 'pg';
@@ -15,6 +15,23 @@ export async function getEficacia(req: Request, res: Response) {
       return res.status(400).json({message: 'Bad Request'});
    }
 };
+
+export async function getEficaciaVacuna(req: Request, res: Response) {
+   let {eficaciaVacuna} = req.params;
+   try {
+      let results = await db().
+          query(`SELECT vi.denom_oms, vi.clasification, vi.linaje, e.percentage
+                 FROM eficacia e 
+                          join virus_variante vi on e.denom_oms = vi.denom_oms 
+                 WHERE e.codevacuna = $1`,
+              [eficaciaVacuna]) as QueryResult<Eficacia>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
 
 //Crear Eficacia
 

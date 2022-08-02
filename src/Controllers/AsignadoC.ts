@@ -1,4 +1,4 @@
-import {Asignado, Reside} from '../Entities';
+import {Asignado} from '../Entities';
 
 import {db} from '../Config/db';
 import {QueryResult} from 'pg';

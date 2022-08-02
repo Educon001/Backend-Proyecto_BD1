@@ -1,4 +1,4 @@
-import {Presenta} from '../Entities';
+import {Asignado, Presenta} from '../Entities';
 
 import {db} from '../Config/db';
 import {QueryResult} from 'pg';
@@ -16,6 +16,21 @@ export async function getPresenta(req: Request, res: Response) {
    }
 };
 
+export async function getPresentaVacuna(req: Request, res: Response) {
+   let {presentaVacuna} = req.params;
+   try {
+      let results = await db().
+          query(`SELECT si.code, si.description
+                 FROM presenta p 
+                          join sintoma_efecto si on si.code  = p.codesintoma 
+                 WHERE p.codevacuna = $1`,
+              [presentaVacuna]) as QueryResult<Presenta>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
 //Crear presenta
 
 export async function createPresenta(req: Request, res: Response) {

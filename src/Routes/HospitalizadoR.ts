@@ -6,6 +6,8 @@ export const router = express.Router();
 //Get Hospitalizado
 router.get('/', HospitalizadoC.getHospitalizado);
 
+router.get('/:hospitalizadoPersona', HospitalizadoC.getHospitalizadoPersona);
+
 //Crear un Hospitalizado
 router.post('/', HospitalizadoC.createHospitalizado);
 

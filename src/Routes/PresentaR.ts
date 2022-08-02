@@ -6,6 +6,8 @@ export const router = express.Router();
 //Get Presenta
 router.get('/', PresentaC.getPresenta);
 
+router.get('/:presentaCodeVacuna', PresentaC.getPresentaVacuna);
+
 //Crear un Presenta
 router.post('/', PresentaC.createPresenta);
 

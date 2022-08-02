@@ -6,6 +6,8 @@ export const router = express.Router();
 //Get Eficacia
 router.get('/', EficaciaC.getEficacia);
 
+router.get('/:eficaciaCodeVacuna', EficaciaC.getEficaciaVacuna);
+
 //Crear un Eficacia
 router.post('/', EficaciaC.createEficacia);
 
