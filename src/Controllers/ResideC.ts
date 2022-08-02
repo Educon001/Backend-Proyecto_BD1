@@ -4,11 +4,29 @@ import {db} from '../Config/db';
 import {QueryResult} from 'pg';
 import {Request, Response} from 'express';
 
-//get all Paises.
+//get all Reside.
 export async function getResidente(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM reside`) as QueryResult<Reside>;
+                                      FROM reside`) as QueryResult<Reside>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
+//get Reside por persona.
+export async function getResidentePersona(req: Request, res: Response) {
+   let {residePersona} = req.params;
+   try {
+      let results = await db().
+          query(`SELECT r.codeprovincia, ep.name, p.name, r.datereside
+                 FROM reside r
+                          join estado_provincia ep on ep.code = r.codeprovincia
+                          join pais p on p.code = ep.codepais
+                 WHERE r.idpersona = $1`,
+              [residePersona]) as QueryResult<Reside>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -53,11 +71,11 @@ export async function updateResidente(req: Request, res: Response) {
        new Date(resideFechaReside));
    try {
       await db().query(`UPDATE reside
-                      SET codeprovincia=$2
-                      WHERE idpersona=$1
-                        and codeprovincia=$2
-                        and datereside=$3
-        `,
+                        SET codeprovincia=$2
+                        WHERE idpersona = $1
+                          and codeprovincia = $2
+                          and datereside = $3
+          `,
 
           [
              reside.codeProvincia,
@@ -79,11 +97,11 @@ export async function deleteResidente(req: Request, res: Response) {
    } = req.params;
    try {
       await db().query(`DELETE
-                      FROM reside
-                      WHERE codeprovincia=$1
-                        and idpersona=$2
-                        and datereside=$3
-                      `, [
+                        FROM reside
+                        WHERE codeprovincia = $1
+                          and idpersona = $2
+                          and datereside = $3
+      `, [
          resideCodeProvincia,
          resideIdPersona,
          resideFechaReside]);

@@ -6,6 +6,9 @@ export const router = express.Router();
 //Get Residente
 router.get('/', ResideC.getResidente);
 
+//Get Residente por persona
+router.get('/:residePersona', ResideC.getResidentePersona);
+
 //Crear un Residente
 router.post('/', ResideC.createResidente);
 
