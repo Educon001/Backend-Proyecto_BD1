@@ -18,14 +18,14 @@ export async function getTiene(req: Request, res: Response) {
 
 //get Reside por persona.
 export async function getTieneVirus(req: Request, res: Response) {
-   let {tieneVirus} = req.params;
+   let {tieneDenomOMS} = req.params;
    try {
       let results = await db().
           query(`SELECT t.codesintoma, si.description
                  FROM tiene t 
                           join sintoma_efecto si  on si.code=t.codesintoma
                  WHERE t.denom_oms = $1`,
-              [tieneVirus]) as QueryResult<Tiene>;
+              [tieneDenomOMS]) as QueryResult<Tiene>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
