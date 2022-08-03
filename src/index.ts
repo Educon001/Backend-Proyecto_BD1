@@ -55,10 +55,10 @@ app.use('/reside', resideRoutes);
 app.use('/tiene', tieneRoutes);
 app.use('/requiere', requiereRoutes);
 app.use('/hospitalizado', hospitalizadoRoutes);
-app.use('/eficacia', eficaciaRoutes);
-app.use('/consiste', consisteRoutes);
+app.use('/eficacia', eficaciaRoutes);              //listo
+app.use('/consiste', consisteRoutes);              //listo
 app.use('/asignado', asignadoRoutes);
-app.use('/reportes', reporteRoutes);//A medias
+app.use('/reportes', reporteRoutes);               //A medias
 
 
 
