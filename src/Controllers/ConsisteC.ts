@@ -48,7 +48,7 @@ export async function createConsiste(req: Request, res: Response) {
       console.time(
           `Inserted consiste with code ${consiste.codeTratamiento, consiste.codeMedicamento}`);
       await db().
-          query('INSERT INTO contagio VALUES ($1, $2, $3, $4, $5)',
+          query('INSERT INTO consiste VALUES ($1, $2, $3, $4, $5)',
               [
                  consiste.codeTratamiento,
                  consiste.codeMedicamento,
@@ -58,6 +58,7 @@ export async function createConsiste(req: Request, res: Response) {
               ]);
       console.timeEnd(
           `Inserted consiste with code ${consiste.codeTratamiento, consiste.codeMedicamento}`);
+      return res.json(consiste)
    } catch (e) {
       console.error(e);
       return res.status(400).json({message: 'Bad Request'});
