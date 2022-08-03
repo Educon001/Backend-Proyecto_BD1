@@ -20,6 +20,7 @@ import {router as eficaciaRoutes} from './Routes/EficaciaR';
 import {router as consisteRoutes} from './Routes/ConsisteR';
 import {router as asignadoRoutes} from './Routes/AsignadoR';
 import {router as reporteRoutes} from './Routes/ReportesR';
+import {router as csRoutes} from './Routes/CentroSaludR';
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.listen(PORT, () => {
 app.use('/personas', personaRoutes);         //listo
 app.use('/cv', cvRoutes);                    //listo
 app.use('/ch', chRoutes);                    //listo
+app.use('/cs', csRoutes);
 app.use('/pais', paisRoutes);                //listo
 app.use('/estado', estadoRoutes);            //listo
 app.use('/municipio', municipioRoutes);      //listo
