@@ -20,6 +20,7 @@ import {router as eficaciaRoutes} from './Routes/EficaciaR';
 import {router as consisteRoutes} from './Routes/ConsisteR';
 import {router as asignadoRoutes} from './Routes/AsignadoR';
 import {router as reporteRoutes} from './Routes/ReportesR';
+import {router as csRoutes} from './Routes/CentroSaludR';
 
 const app = express();
 
@@ -36,18 +37,19 @@ app.listen(PORT, () => {
    console.log(`app started on port ${PORT}`);
 });
 
-//configure the app.                               //CRUD
-app.use('/personas', personaRoutes);               //listo
-app.use('/cv', cvRoutes);                          //listo
-app.use('/ch', chRoutes);                          //listo
-app.use('/pais', paisRoutes);                      //listo
-app.use('/estado', estadoRoutes);                  //listo
-app.use('/municipio', municipioRoutes);            //listo
-app.use('/vacunada', vacunadaRoutes);              //listo
-app.use('/vacuna', vacunaRoutes);                  //listo
-app.use('/tratamiento', tratamientoRoutes);        //listo
-app.use('/medicamento', medicamentoRoutes);        //listo
-app.use('/variante', varianteRoutes);              //listo
+//configure the app.                         //CRUD
+app.use('/personas', personaRoutes);         //listo
+app.use('/cv', cvRoutes);                    //listo
+app.use('/ch', chRoutes);                    //listo
+app.use('/cs', csRoutes);
+app.use('/pais', paisRoutes);                //listo
+app.use('/estado', estadoRoutes);            //listo
+app.use('/municipio', municipioRoutes);      //listo
+app.use('/vacunada', vacunadaRoutes);        //listo
+app.use('/vacuna', vacunaRoutes);            //listo
+app.use('/tratamiento', tratamientoRoutes);  //listo
+app.use('/medicamento', medicamentoRoutes);  //listo
+app.use('/variante', varianteRoutes);        //listo
 app.use('/contagio', contagioRoutes);
 app.use('/reside', resideRoutes);
 app.use('/tiene', tieneRoutes);

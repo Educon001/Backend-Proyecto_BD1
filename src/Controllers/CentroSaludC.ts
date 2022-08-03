@@ -4,6 +4,18 @@ import {db} from '../Config/db';
 import {QueryResult} from 'pg';
 import {Request, Response} from 'express';
 
+//get all CS.
+export async function getCentrosSalud(req: Request, res: Response) {
+   try {
+      let results = await db().query(`SELECT CS.*
+                                    FROM Centro_Salud CS`) as QueryResult<CentroSalud>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
 //get all CH.
 export async function getCentrosHospitalizacion(req: Request, res: Response) {
    try {
