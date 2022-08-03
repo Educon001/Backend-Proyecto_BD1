@@ -20,7 +20,7 @@ export async function getHospitalizadoPersona(req: Request, res: Response) {
    let {hospitalizadoPersona} = req.params;
    try {
       let results = await db().
-          query(`SELECT cs.code, cs.name, h.datehospitalizado 
+          query(`SELECT h.codecentroh, cs.name, h.datehospitalizado 
                  FROM hospitalizado h 
                       join centro_salud cs on h.codecentroh = cs.code 
                  WHERE h.idpaciente = $1`,
@@ -66,18 +66,19 @@ export async function updateHospitalizado(req: Request, res: Response) {
 
    } = req.params;
    let hospitalizado = new Hospitalizado(hospitalizadoIdPaciente,
-       parseInt(hospitalizadoCodeCentroH),
+       parseInt(req.body.codecentroh),
        new Date(hospitalizadoDateHospitalizado));
    try {
       await db().query(`UPDATE hospitalizado
-                      SET codecentroh=$2
+                      SET codecentroh=$4
                       WHERE idpaciente=$1
                         and codecentroh=$2
                         and datehospitalizado=$3`,
           [
              hospitalizado.idPaciente,
-             hospitalizado.codeCentroH,
+             hospitalizadoCodeCentroH,
              hospitalizado.dateHospitalizado,
+             hospitalizado.codeCentroH
           ]);
       return res.json(hospitalizado);
    } catch (e) {

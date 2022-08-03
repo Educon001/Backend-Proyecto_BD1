@@ -67,20 +67,21 @@ export async function updateResidente(req: Request, res: Response) {
       resideIdPersona,
       resideFechaReside,
    } = req.params;
-   let reside = new Reside(parseInt(resideCodeProvincia), resideIdPersona,
+   let reside = new Reside(parseInt(req.body.codeprovincia), resideIdPersona,
        new Date(resideFechaReside));
    try {
       await db().query(`UPDATE reside
-                        SET codeprovincia=$1
+                        SET codeprovincia=$4
                         WHERE idpersona = $2
                           and codeprovincia = $1
                           and datereside = $3
           `,
 
           [
-             reside.codeProvincia,
+             resideCodeProvincia,
              reside.idPersona,
-             reside.dateReside]);
+             reside.dateReside,
+             reside.codeProvincia]);
       return res.json(reside);
    } catch (e) {
       console.error(e);

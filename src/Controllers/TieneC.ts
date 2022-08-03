@@ -21,7 +21,7 @@ export async function getTieneVirus(req: Request, res: Response) {
    let {tieneVirus} = req.params;
    try {
       let results = await db().
-          query(`SELECT si.code, si.description
+          query(`SELECT t.codesintoma, si.description
                  FROM tiene t 
                           join sintoma_efecto si  on si.code=t.codesintoma
                  WHERE t.denom_oms = $1`,
@@ -63,17 +63,18 @@ export async function updateTiene(req: Request, res: Response) {
       tieneCodeSintoma,
       tieneDenomOMS,
    } = req.params;
-   let tiene = new Tiene(parseInt(tieneCodeSintoma), tieneDenomOMS);
+   let tiene = new Tiene(parseInt(req.body.codesintoma), tieneDenomOMS);
    try {
       await db().query(`UPDATE tiene
-                      SET codesintoma=$1
+                      SET codesintoma=$3
                       WHERE codesintoma=$1
                         and denom_oms=$2
         `,
 
           [
-             tiene.codeSintoma,
-             tiene.denomOMS]);
+             tieneCodeSintoma,
+             tiene.denomOMS,
+             tiene.codeSintoma]);
       return res.json(tiene);
    } catch (e) {
       console.error(e);
