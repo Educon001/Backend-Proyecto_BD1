@@ -21,8 +21,8 @@ export async function getAsignadoPersona(req: Request, res: Response) {
    try {
       let results = await db().
           query(`SELECT c.code, c.name, a.dateasignado
-                 FROM asignado a 
-                          join centro_salud c on a.codecentrosalud = c.code 
+                 FROM asignado a
+                          join centro_salud c on a.codecentrosalud = c.code
                  WHERE a.idpersonalsalud = $1`,
               [asignadoPersona]) as QueryResult<Asignado>;
       return res.json(results.rows);
@@ -66,10 +66,10 @@ export async function updateAsignado(req: Request, res: Response) {
       asignadoDateAsignado,
    } = req.params;
    let asignado = new Asignado(asignadoIdPersonalSalud,
-       parseInt(asignadoCodeCentroSalud), new Date(asignadoDateAsignado));
+       parseInt(req.body.codecentrosalud), new Date(asignadoDateAsignado));
    try {
       await db().query(`UPDATE asignado
-                        SET codecentrosalud=$2
+                        SET codecentrosalud=$4
                         WHERE idpersonalsalud = $1
                           and codecentrosalud = $2
                           and dateasignado = $3
@@ -77,8 +77,9 @@ export async function updateAsignado(req: Request, res: Response) {
 
           [
              asignado.idPersonalSalud,
-             asignado.codeCentroSalud,
-             asignado.dateAsignado]);
+             asignadoCodeCentroSalud,
+             asignado.dateAsignado,
+             asignado.codeCentroSalud]);
       return res.json(asignado);
    } catch (e) {
       console.error(e);

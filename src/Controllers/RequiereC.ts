@@ -66,20 +66,21 @@ export async function updateRequiere(req: Request, res: Response) {
       requiereidPaciente,
       requiereDate,
    } = req.params;
-   let requiere = new Requiere(parseInt(requiereCodeTratamiento),
+   let requiere = new Requiere(parseInt(req.body.codetratamiento),
        requiereidPaciente, new Date(requiereDate), req.body.estado);
    try {
       await db().query(`UPDATE requiere
-                        SET codetratamiento=$1,
+                        SET codetratamiento=$5,
                             estado=$4
                         WHERE codetratamiento = $1
                           and idpaciente = $2
                           and date = $3 `,
           [
-             requiere.codeTratamiento,
+             requiereCodeTratamiento,
              requiere.idPaciente,
              requiere.date,
-             requiere.estado
+             requiere.estado,
+             requiere.codeTratamiento
           ]);
       return res.json(requiere);
    } catch (e) {

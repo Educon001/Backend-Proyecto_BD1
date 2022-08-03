@@ -63,16 +63,17 @@ export async function updatePresenta(req: Request, res: Response) {
       presentaCodeSintoma,
    } = req.params;
    let presenta = new Presenta(parseInt(presentaCodeVacuna),
-       parseInt(presentaCodeSintoma));
+       parseInt(req.body.codesintoma));
    try {
       await db().query(`UPDATE presenta
-                        SET codesintoma=$2
+                        SET codesintoma=$3
                         WHERE codevacuna = $1
                           and codesintoma = $2
           `,
 
           [
              presenta.codeVacuna,
+             presentaCodeSintoma,
              presenta.codeSintoma]);
       return res.json(presenta);
    } catch (e) {
