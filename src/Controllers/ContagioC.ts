@@ -37,6 +37,7 @@ export async function createContagiado(req: Request, res: Response) {
               ]);
       console.timeEnd(
           `Inserted contagio with code ${contagio.idPersona, contagio.denomOMS, contagio.dateContagio}`);
+      return res.json(contagio);
    } catch (e) {
       console.error(e);
       return res.status(400).json({message: 'Bad Request'});

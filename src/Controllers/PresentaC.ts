@@ -42,7 +42,7 @@ export async function createPresenta(req: Request, res: Response) {
       console.time(
           `Inserted presenta with code ${presenta.codeVacuna, presenta.codeSintoma}`);
       await db().
-          query('INSERT INTO tiene VALUES ($1, $2)',
+          query('INSERT INTO presenta VALUES ($1, $2)',
               [
                  presenta.codeVacuna,
                  presenta.codeSintoma]);

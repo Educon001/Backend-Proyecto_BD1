@@ -52,6 +52,7 @@ export async function createEficacia(req: Request, res: Response) {
               ]);
       console.timeEnd(
           `Inserted eficacia with code ${eficacia.denomOMS, eficacia.codeVacuna}`);
+      return res.json(eficacia)
    } catch (e) {
       console.error(e);
       return res.status(400).json({message: 'Bad Request'});
