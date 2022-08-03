@@ -17,14 +17,14 @@ export async function getEficacia(req: Request, res: Response) {
 };
 
 export async function getEficaciaVacuna(req: Request, res: Response) {
-   let {eficaciaVacuna} = req.params;
+   let {eficaciaCodeVacuna} = req.params;
    try {
       let results = await db().
           query(`SELECT vi.denom_oms, vi.clasification, vi.linaje, e.percentage
                  FROM eficacia e 
                           join virus_variante vi on e.denom_oms = vi.denom_oms 
                  WHERE e.codevacuna = $1`,
-              [eficaciaVacuna]) as QueryResult<Eficacia>;
+              [eficaciaCodeVacuna]) as QueryResult<Eficacia>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -44,7 +44,7 @@ export async function createEficacia(req: Request, res: Response) {
       console.time(
           `Inserted  with code ${eficacia.denomOMS, eficacia.codeVacuna}`);
       await db().
-          query('INSERT INTO contagio VALUES ($1, $2, $3)',
+          query('INSERT INTO eficacia VALUES ($1, $2, $3)',
               [
                  eficacia.denomOMS,
                  eficacia.codeVacuna,
