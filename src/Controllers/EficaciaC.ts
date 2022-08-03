@@ -20,7 +20,7 @@ export async function getEficaciaVacuna(req: Request, res: Response) {
    let {eficaciaVacuna} = req.params;
    try {
       let results = await db().
-          query(`SELECT vi.denom_oms, vi.clasification, vi.linaje, e.percentage
+          query(`SELECT e.denom_oms, vi.clasification, vi.linaje, e.percentage
                  FROM eficacia e 
                           join virus_variante vi on e.denom_oms = vi.denom_oms 
                  WHERE e.codevacuna = $1`,

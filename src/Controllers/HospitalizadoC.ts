@@ -20,7 +20,7 @@ export async function getHospitalizadoPersona(req: Request, res: Response) {
    let {hospitalizadoPersona} = req.params;
    try {
       let results = await db().
-          query(`SELECT cs.code, cs.name, h.datehospitalizado 
+          query(`SELECT h.codecentroh, cs.name, h.datehospitalizado 
                  FROM hospitalizado h 
                       join centro_salud cs on h.codecentroh = cs.code 
                  WHERE h.idpaciente = $1`,

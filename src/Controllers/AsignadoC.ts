@@ -20,7 +20,7 @@ export async function getAsignadoPersona(req: Request, res: Response) {
    let {asignadoPersona} = req.params;
    try {
       let results = await db().
-          query(`SELECT c.code, c.name, a.dateasignado
+          query(`SELECT a.codecentrosalud, c.name, a.dateasignado
                  FROM asignado a
                           join centro_salud c on a.codecentrosalud = c.code
                  WHERE a.idpersonalsalud = $1`,

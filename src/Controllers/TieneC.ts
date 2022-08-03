@@ -21,7 +21,7 @@ export async function getTieneVirus(req: Request, res: Response) {
    let {tieneVirus} = req.params;
    try {
       let results = await db().
-          query(`SELECT si.code, si.description
+          query(`SELECT t.codesintoma, si.description
                  FROM tiene t 
                           join sintoma_efecto si  on si.code=t.codesintoma
                  WHERE t.denom_oms = $1`,

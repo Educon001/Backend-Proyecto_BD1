@@ -20,7 +20,7 @@ export async function getPresentaVacuna(req: Request, res: Response) {
    let {presentaVacuna} = req.params;
    try {
       let results = await db().
-          query(`SELECT si.code, si.description
+          query(`SELECT p.codesintoma, si.description
                  FROM presenta p
                           join sintoma_efecto si on si.code = p.codesintoma
                  WHERE p.codevacuna = $1`,
