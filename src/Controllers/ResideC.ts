@@ -40,7 +40,7 @@ export async function getResidentePersona(req: Request, res: Response) {
 export async function createResidente(req: Request, res: Response) {
    console.info('Attempting to create residente with input', req.body);
    let reside = new Reside(parseInt(req.body.codeprovincia), req.body.idpersona,
-       req.body.datereside);
+       new Date(req.body.datereside));
    try {
       console.time(
           `Inserted residente with code ${reside.codeProvincia, reside.idPersona, new Date(
