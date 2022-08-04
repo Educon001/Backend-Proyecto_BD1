@@ -3,9 +3,15 @@ import * as ReportesC from '../Controllers/ReportesC';
 
 export const router = express.Router();
 
-/* 2. El porcentaje de personas vacunadas por centro de vacunación que han estado
-contagiados con el virus luego de ser vacunados. */
+router.get('/1', ReportesC.Reporte1);
+
 router.get('/2', ReportesC.Reporte2);
+
+router.get('/3', ReportesC.Reporte3);
+
+router.get('/4', ReportesC.Reporte4);
+
+router.get('/5', ReportesC.Reporte5);
 
 router.get('/6', ReportesC.Reporte6);
 
