@@ -1,9 +1,13 @@
 export class Requiere {
+   public date: Date;
+
    constructor(
        public codeTratamiento: number,
        public idPaciente: string,
-       public date: Date,
+       date: Date,
        public estado: string,
    ) {
+      var timezoneOffset = date.getTimezoneOffset() * 60000;
+      this.date = new Date(date.getTime() + timezoneOffset);
    }
 }
