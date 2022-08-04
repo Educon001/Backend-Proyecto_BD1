@@ -74,7 +74,7 @@ export async function deleteVariante(req: Request, res: Response) {
    try {
       await db().query(`DELETE
                       FROM virus_variante
-                      WHERE denom_oms = $1 `, [parseInt(varianteDenomOms)])
+                      WHERE denom_oms = $1 `, [varianteDenomOms])
       ;
       return res.json({message: 'ok'});
    } catch (e) {
