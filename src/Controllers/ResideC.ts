@@ -21,7 +21,7 @@ export async function getResidentePersona(req: Request, res: Response) {
    let {residePersona} = req.params;
    try {
       let results = await db().
-          query(`SELECT r.codeprovincia, ep.name, p.name, r.datereside
+          query(`SELECT r.codeprovincia, ep.name, p.name as namepais, r.datereside
                  FROM reside r
                           join estado_provincia ep on ep.code = r.codeprovincia
                           join pais p on p.code = ep.codepais

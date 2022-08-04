@@ -218,5 +218,5 @@ INSERT INTO tiene VALUES (3,'Omicron');
 INSERT INTO tiene VALUES (5,'Omicron');
 INSERT INTO tiene VALUES (8,'Omicron');
 INSERT INTO tiene VALUES (9,'Omicron');
-
+------------------------------------
 INSERT INTO asignado VALUES ('V19553823',1,'2022-04-12');

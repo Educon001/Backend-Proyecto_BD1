@@ -8,7 +8,24 @@ import {Request, Response} from 'express';
 export async function getContagiado(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM contagio`) as QueryResult<Contagio>;
+                                      FROM contagio`) as QueryResult<Contagio>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
+//get Contagios por persona
+export async function getContagiadoPersona(req: Request, res: Response) {
+   let {contagiadoPersona} = req.params;
+   try {
+      let results = await db().
+          query(`SELECT c.denom_oms, c.datecontagio, c.resttime, c.casahospitalizado
+                 FROM contagio c
+                          join virus_variante vv on vv.denom_oms = c.denom_oms
+                 WHERE c.idpersona = $1`,
+              [contagiadoPersona]) as QueryResult<Contagio>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -17,7 +34,6 @@ export async function getContagiado(req: Request, res: Response) {
 };
 
 //Crear contagiado
-
 export async function createContagiado(req: Request, res: Response) {
    console.info('Attempting to create contagiado with input', req.body);
    let contagio = new Contagio(req.body.idpersona, req.body.denom_oms,
@@ -57,12 +73,12 @@ export async function updateContagiado(req: Request, res: Response) {
        req.body.casahospitalizado);
    try {
       await db().query(`UPDATE contagio
-                      SET resttime=$5,
-                          casahospitalizado=$6
-                      WHERE idpersona = $1
-                        and denom_oms = $2
-                        and datecontagio = $3
-        `,
+                        SET resttime=$5,
+                            casahospitalizado=$6
+                        WHERE idpersona = $1
+                          and denom_oms = $2
+                          and datecontagio = $3
+          `,
 
           [
              contagio.idPersona,
@@ -86,11 +102,11 @@ export async function deleteContagiado(req: Request, res: Response) {
    } = req.params;
    try {
       await db().query(`DELETE
-                      FROM contagio
-                      WHERE idpersona = $1
-                        and denom_oms = $2
-                        and datecontagio = $3
-    `, [
+                        FROM contagio
+                        WHERE idpersona = $1
+                          and denom_oms = $2
+                          and datecontagio = $3
+      `, [
          contagioPersonaId,
          contagioDenomOMS,
          contagioFechaContagio]);

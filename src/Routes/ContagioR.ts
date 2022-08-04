@@ -6,6 +6,9 @@ export const router = express.Router();
 //Get Contagiados
 router.get('/', ContagioC.getContagiado);
 
+//Get Contagios por Persona
+router.get('/:contagiadoPersona', ContagioC.getContagiadoPersona);
+
 //Crear un contagiado
 router.post('/', ContagioC.createContagiado);
 

@@ -1,4 +1,4 @@
-import {Persona, PersonalSalud, Paciente} from '../Entities';
+import {Persona, PersonalSalud, Paciente, Pais} from '../Entities';
 import {db} from '../Config/db';
 import {QueryResult} from 'pg';
 import {Request, Response} from 'express';
@@ -7,7 +7,7 @@ import {Request, Response} from 'express';
 export async function getPersonas(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM Persona`) as QueryResult<Persona>;
+                                      FROM Persona`) as QueryResult<Persona>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -18,9 +18,9 @@ export async function getPersonas(req: Request, res: Response) {
 export async function getPersonalSalud(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT P.*, PS.Email, PS.type
-                                    FROM Persona P
-                                             JOIN Personal_Salud PS
-                                                  ON P.ID = PS.ID_Persona`) as QueryResult<PersonalSalud>;
+                                      FROM Persona P
+                                               JOIN Personal_Salud PS
+                                                    ON P.ID = PS.ID_Persona`) as QueryResult<PersonalSalud>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -31,9 +31,9 @@ export async function getPersonalSalud(req: Request, res: Response) {
 export async function getPacientes(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT P.*
-                                    FROM Persona P
-                                             JOIN Paciente PA
-                                                  ON P.ID = PA.ID_Persona`) as QueryResult<PersonalSalud>;
+                                      FROM Persona P
+                                               JOIN Paciente PA
+                                                    ON P.ID = PA.ID_Persona`) as QueryResult<PersonalSalud>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -64,19 +64,43 @@ export async function createPersona(req: Request, res: Response) {
 export async function createPersonalSalud(req: Request, res: Response) {
    console.info('Attempting to create health personnel with input', req.body);
    try {
-   let persona = await db().
-       query(`SELECT *
-             FROM Persona
-             WHERE id = $1`, [req.body.id_persona]) as QueryResult<Persona>;
-   let ps = new PersonalSalud(req.body.email, req.body.type, persona.rows[0].id,
-       persona.rows[0].name, persona.rows[0].lastName, persona.rows[0].sex,
-       persona.rows[0].birthdate, persona.rows[0].highRisk);
+      let persona = await db().
+          query(`SELECT *
+                 FROM Persona
+                 WHERE id = $1`, [req.body.id_persona]) as QueryResult<Persona>;
+      let ps = new PersonalSalud(req.body.email, req.body.type,
+          persona.rows[0].id,
+          persona.rows[0].name, persona.rows[0].lastName, persona.rows[0].sex,
+          persona.rows[0].birthdate, persona.rows[0].highRisk);
       console.time(`Inserted health personnel with id ${ps.id}`);
       await db().
           query('INSERT INTO Personal_Salud VALUES ($1, $2, $3)',
               [ps.id, ps.email, ps.type]);
       console.timeEnd(`Inserted health personnel with id ${ps.id}`);
       return res.json(ps);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
+//Create Paciente
+export async function createPaciente(req: Request, res: Response) {
+   console.info('Attempting to create paciente with input', req.body);
+   try {
+      let persona = await db().
+          query(`SELECT *
+                 FROM Persona
+                 WHERE id = $1`, [req.body.id_persona]) as QueryResult<Persona>;
+      let paciente = new Paciente(persona.rows[0].id,
+          persona.rows[0].name, persona.rows[0].lastName, persona.rows[0].sex,
+          persona.rows[0].birthdate, persona.rows[0].highRisk);
+      console.time(`Inserted patient with name ${paciente.id}`);
+      await db().
+          query('INSERT INTO paciente VALUES ($1)',
+              [paciente.id]);
+      console.timeEnd(`Inserted patient with name ${paciente.id}`);
+      return res.json(paciente);
    } catch (e) {
       console.error(e);
       return res.status(400).json({message: 'Bad Request'});
@@ -90,12 +114,12 @@ export async function updatePersona(req: Request, res: Response) {
        req.body.sex, new Date(req.body.birthdate), req.body.highrisk);
    try {
       await db().query(`UPDATE Persona
-                      SET Name=$2,
-                          LastName=$3,
-                          Sex=$4,
-                          Birthdate=$5,
-                          HighRisk=$6
-                      WHERE id = $1`,
+                        SET Name=$2,
+                            LastName=$3,
+                            Sex=$4,
+                            Birthdate=$5,
+                            HighRisk=$6
+                        WHERE id = $1`,
           [p.id, p.name, p.lastName, p.sex, p.birthdate, p.highRisk]);
       return res.json(p);
    } catch (e) {
@@ -109,9 +133,9 @@ export async function updatePersonalSalud(req: Request, res: Response) {
    let {personalId} = req.params;
    try {
       await db().query(`UPDATE Personal_Salud
-                      SET Email=$2,
-                          Type=$3
-                      WHERE id_persona = $1`,
+                        SET Email=$2,
+                            Type=$3
+                        WHERE id_persona = $1`,
           [personalId, req.body.email, req.body.type]);
       return res.json(
           {id_persona: personalId, email: req.body.email, type: req.body.type});
@@ -126,8 +150,8 @@ export async function deletePersona(req: Request, res: Response) {
    let {personaId} = req.params;
    try {
       await db().query(`DELETE
-                      FROM Persona
-                      WHERE id = $1`, [personaId]);
+                        FROM Persona
+                        WHERE id = $1`, [personaId]);
       return res.json({message: 'ok'});
    } catch (e) {
       console.error(e);
@@ -140,8 +164,8 @@ export async function deletePersonalSalud(req: Request, res: Response) {
    let {personalId} = req.params;
    try {
       await db().query(`DELETE
-                      FROM Personal_Salud
-                      WHERE id_persona = $1`, [personalId]);
+                        FROM Personal_Salud
+                        WHERE id_persona = $1`, [personalId]);
       return res.json({message: 'ok'});
    } catch (e) {
       console.error(e);
@@ -154,8 +178,8 @@ export async function deletePaciente(req: Request, res: Response) {
    let {pacienteId} = req.params;
    try {
       await db().query(`DELETE
-                      FROM Paciente
-                      WHERE id_persona = $1`, [pacienteId]);
+                        FROM Paciente
+                        WHERE id_persona = $1`, [pacienteId]);
       return res.json({message: 'ok'});
    } catch (e) {
       console.error(e);

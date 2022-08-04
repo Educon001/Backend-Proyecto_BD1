@@ -16,6 +16,9 @@ router.post('/', PersonaC.createPersona);
 //Crear un Personal de salud
 router.post('/ps', PersonaC.createPersonalSalud);
 
+//Crear un Paciente
+router.post('/paciente', PersonaC.createPaciente);
+
 //Actualizar una Persona.
 router.put('/:personaId', PersonaC.updatePersona);
 
@@ -29,4 +32,4 @@ router.delete('/:personaId', PersonaC.deletePersona);
 router.delete('/ps/:personalId', PersonaC.deletePersonalSalud);
 
 //Eliminar un Paciente
-router.delete('/paciente/:personalId', PersonaC.deletePaciente);
+router.delete('/paciente/:pacienteId', PersonaC.deletePaciente);
