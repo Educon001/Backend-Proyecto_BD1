@@ -23,7 +23,7 @@ export async function createSintoma(req: Request, res: Response) {
    try {
       console.time(`Inserted sintoma with name ${sintoma.description}`);
       await db().
-          query('INSERT INTO vacuna VALUES (default, $1)',
+          query('INSERT INTO sintoma_efecto VALUES (default, $1)',
               [
                  sintoma.description]);
       console.timeEnd(`Inserted sintoma with name ${sintoma.description}`);

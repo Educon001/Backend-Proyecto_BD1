@@ -10,6 +10,8 @@ router.get('/ps', PersonaC.getPersonalSalud);
 
 router.get('/paciente', PersonaC.getPacientes);
 
+router.get('/ps/medico',PersonaC.getMedico);
+
 //Crear una Persona.
 router.post('/', PersonaC.createPersona);
 

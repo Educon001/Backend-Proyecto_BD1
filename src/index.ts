@@ -21,6 +21,8 @@ import {router as consisteRoutes} from './Routes/ConsisteR';
 import {router as asignadoRoutes} from './Routes/AsignadoR';
 import {router as reporteRoutes} from './Routes/ReportesR';
 import {router as csRoutes} from './Routes/CentroSaludR';
+import {router as sintomaRoutes} from './Routes/SintomaR';
+import {router as presentaRoutes} from './Routes/PresentaR';
 
 const app = express();
 
@@ -50,15 +52,17 @@ app.use('/vacuna', vacunaRoutes);            //listo
 app.use('/tratamiento', tratamientoRoutes);  //listo
 app.use('/medicamento', medicamentoRoutes);  //listo
 app.use('/variante', varianteRoutes);        //listo
-app.use('/contagio', contagioRoutes);
+app.use('/contagio', contagioRoutes);        //Falta formulario
 app.use('/reside', resideRoutes);            //Falta formulario
-app.use('/tiene', tieneRoutes);              //
+app.use('/tiene', tieneRoutes);              //Falta formulario
 app.use('/requiere', requiereRoutes);
-app.use('/hospitalizado', hospitalizadoRoutes);
+app.use('/hospitalizado', hospitalizadoRoutes);    //listo
 app.use('/eficacia', eficaciaRoutes);              //listo
 app.use('/consiste', consisteRoutes);              //listo
-app.use('/asignado', asignadoRoutes);
-app.use('/reportes', reporteRoutes);               //A medias
+app.use('/asignado', asignadoRoutes);              //listo
+app.use('/reportes', reporteRoutes);               //Faltan nombres
+app.use('/sintoma', sintomaRoutes);                //listo
+app.use('/presenta', presentaRoutes);              //listo?
 
 
 

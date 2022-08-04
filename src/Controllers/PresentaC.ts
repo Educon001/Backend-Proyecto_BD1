@@ -17,7 +17,7 @@ export async function getPresenta(req: Request, res: Response) {
 };
 
 export async function getPresentaVacuna(req: Request, res: Response) {
-   let {presentaVacuna} = req.params;
+   let {presentaCodeVacuna} = req.params;
    try {
       let results = await db().
           query(`SELECT p.codesintoma, si.description
@@ -25,7 +25,7 @@ export async function getPresentaVacuna(req: Request, res: Response) {
                           join sintoma_efecto si on si.code = p.codesintoma
                  WHERE p.codevacuna = $1
                  ORDER BY p.codesintoma`,
-              [presentaVacuna]) as QueryResult<Presenta>;
+              [presentaCodeVacuna]) as QueryResult<Presenta>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);

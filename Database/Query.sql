@@ -22,7 +22,8 @@ WHERE CS.code IN (
                      GROUP BY V.codecentrov
                  ) as NumPersonas
         ))
-);
+)
+ORDER BY centro_salud, Municipio;
 
 
 /* 1. Por estado/provincia indicar la cantidad de pacientes que han sido contagiados más
@@ -46,7 +47,8 @@ FROM estado_provincia ep
                             FROM contagio
                             WHERE casahospitalizado=true) H on H.idpersona=c2.idpersona
            GROUP BY c2.idpersona) c2H on c2H.idpersona=RA.idpersona
-GROUP BY ep.name, p.name;
+GROUP BY ep.name, p.name
+ORDER BY Pais,Estado_Provincia;
 
 
 /* 2. El porcentaje de personas vacunadas por centro de vacunación que han estado
@@ -65,7 +67,8 @@ FROM centro_salud cs,
         GROUP BY idpersona) as C
     WHERE V.idpersona=C.idpersona and V.datevacuna<C.ultimo_contagio
     GROUP BY V.codecentrov) as Vac_C
-WHERE Vac.codecentrov = Vac_C.codecentrov and Vac.codecentrov=cs.code;
+WHERE Vac.codecentrov = Vac_C.codecentrov and Vac.codecentrov=cs.code
+ORDER BY percentage;
 
 
 /* 3. Calcular el valor de la eficacia de cada vacuna con respecto al nivel de contagio y
@@ -85,7 +88,8 @@ FROM vacuna v
                                        FROM contagio
                                        GROUP BY idpersona) C on V.idpersona = C.idpersona
                             WHERE datevacuna<C.ultimo_contagio) Vac_C on TV.codevacuna=Vac_C.codevacuna and TV.idpersona=Vac_C.idpersona
-           GROUP BY TV.codevacuna) CDV on CDV.codevacuna=v.code;
+           GROUP BY TV.codevacuna) CDV on CDV.codevacuna=v.code
+ORDER BY Eficacia;
 
 
 /*. 4. Los tratamientos que se han aplicado a los pacientes que han sido contagiados.
@@ -104,7 +108,7 @@ FROM tratamiento t
                WHERE c.datecontagio<r.date
                GROUP BY r.idpaciente) as FCTP on FCTP.idpaciente=p.id
 WHERE c.datecontagio=FCTP.fechacontagio
-ORDER BY r.date;
+ORDER BY r.date,p.id;
 
 
 /* 5. Imprima los países donde vivan más personas contagiadas por cada una de las
@@ -129,7 +133,7 @@ FROM pais p
            FROM CPVP
            GROUP BY denom_oms) CPV on CPV.denom_oms=CPVP.denom_oms
 WHERE CPVP.Ncontagios=CPV.maxContagios --Comprobamos que el numero de contagios por variante por pais sea igual al maximo
-ORDER BY variante;
+ORDER BY variante,CPVP.Ncontagios;
 
 
 

@@ -42,7 +42,7 @@ export async function createContagiado(req: Request, res: Response) {
        req.body.casahospitalizado);
    try {
       console.time(
-          `Inserted  with code ${contagio.idPersona, contagio.denomOMS, contagio.dateContagio}`);
+          `Inserted contagio with code ${contagio.idPersona}, ${contagio.denomOMS}, ${contagio.dateContagio}`);
       await db().
           query('INSERT INTO contagio VALUES ($1, $2, $3, $4, $5)',
               [
@@ -53,7 +53,7 @@ export async function createContagiado(req: Request, res: Response) {
                  contagio.casaHospitalizado,
               ]);
       console.timeEnd(
-          `Inserted contagio with code ${contagio.idPersona, contagio.denomOMS, contagio.dateContagio}`);
+          `Inserted contagio with code ${contagio.idPersona}, ${contagio.denomOMS}, ${contagio.dateContagio}`);
       return res.json(contagio);
    } catch (e) {
       console.error(e);
@@ -74,8 +74,8 @@ export async function updateContagiado(req: Request, res: Response) {
        req.body.casahospitalizado);
    try {
       await db().query(`UPDATE contagio
-                        SET resttime=$5,
-                            casahospitalizado=$6
+                        SET resttime=$4,
+                            casahospitalizado=$5
                         WHERE idpersona = $1
                           and denom_oms = $2
                           and datecontagio = $3

@@ -1,4 +1,4 @@
-import {Persona, PersonalSalud, Paciente, Pais} from '../Entities';
+import {Persona, PersonalSalud, Paciente, Pais, Medico} from '../Entities';
 import {db} from '../Config/db';
 import {QueryResult} from 'pg';
 import {Request, Response} from 'express';
@@ -23,6 +23,20 @@ export async function getPersonalSalud(req: Request, res: Response) {
                                                JOIN Personal_Salud PS
                                                     ON P.ID = PS.ID_Persona
                                       ORDER BY p.id`) as QueryResult<PersonalSalud>;
+      return res.json(results.rows);
+   } catch (e) {
+      console.error(e);
+      return res.status(400).json({message: 'Bad Request'});
+   }
+};
+
+export async function getMedico(req: Request, res: Response) {
+   try {
+      let results = await db().query(`SELECT P.id, p.name, p.lastname
+                                      FROM Medico M
+                                               JOIN Persona P
+                                                    ON P.ID = M.id_medico
+                                      ORDER BY p.id`) as QueryResult<Medico>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
