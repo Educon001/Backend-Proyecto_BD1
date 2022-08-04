@@ -41,7 +41,7 @@ app.listen(PORT, () => {
 app.use('/personas', personaRoutes);         //listo
 app.use('/cv', cvRoutes);                    //listo
 app.use('/ch', chRoutes);                    //listo
-app.use('/cs', csRoutes);
+app.use('/cs', csRoutes);                    //listo
 app.use('/pais', paisRoutes);                //listo
 app.use('/estado', estadoRoutes);            //listo
 app.use('/municipio', municipioRoutes);      //listo
@@ -51,8 +51,8 @@ app.use('/tratamiento', tratamientoRoutes);  //listo
 app.use('/medicamento', medicamentoRoutes);  //listo
 app.use('/variante', varianteRoutes);        //listo
 app.use('/contagio', contagioRoutes);
-app.use('/reside', resideRoutes);
-app.use('/tiene', tieneRoutes);
+app.use('/reside', resideRoutes);            //Falta formulario
+app.use('/tiene', tieneRoutes);              //
 app.use('/requiere', requiereRoutes);
 app.use('/hospitalizado', hospitalizadoRoutes);
 app.use('/eficacia', eficaciaRoutes);              //listo

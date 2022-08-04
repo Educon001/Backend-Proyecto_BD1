@@ -24,7 +24,8 @@ export async function getTieneVirus(req: Request, res: Response) {
           query(`SELECT t.codesintoma, si.description
                  FROM tiene t 
                           join sintoma_efecto si  on si.code=t.codesintoma
-                 WHERE t.denom_oms = $1`,
+                 WHERE t.denom_oms = $1
+                 ORDER BY t.codesintoma`,
               [tieneDenomOMS]) as QueryResult<Tiene>;
       return res.json(results.rows);
    } catch (e) {

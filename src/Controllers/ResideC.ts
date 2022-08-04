@@ -25,7 +25,8 @@ export async function getResidentePersona(req: Request, res: Response) {
                  FROM reside r
                           join estado_provincia ep on ep.code = r.codeprovincia
                           join pais p on p.code = ep.codepais
-                 WHERE r.idpersona = $1`,
+                 WHERE r.idpersona = $1
+                 ORDER BY r.datereside`,
               [residePersona]) as QueryResult<Reside>;
       return res.json(results.rows);
    } catch (e) {

@@ -23,7 +23,8 @@ export async function getAsignadoPersona(req: Request, res: Response) {
           query(`SELECT a.codecentrosalud, c.name, a.dateasignado
                  FROM asignado a
                           join centro_salud c on a.codecentrosalud = c.code
-                 WHERE a.idpersonalsalud = $1`,
+                 WHERE a.idpersonalsalud = $1
+                 ORDER BY a.dateasignado`,
               [asignadoPersona]) as QueryResult<Asignado>;
       return res.json(results.rows);
    } catch (e) {

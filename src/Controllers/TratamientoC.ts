@@ -7,7 +7,8 @@ import {Request, Response} from 'express';
 export async function getTratamiento(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM tratamiento`) as QueryResult<Tratamiento>;
+                                    FROM tratamiento
+                                    ORDER BY code`) as QueryResult<Tratamiento>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);

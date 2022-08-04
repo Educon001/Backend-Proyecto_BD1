@@ -24,7 +24,8 @@ export async function getContagiadoPersona(req: Request, res: Response) {
           query(`SELECT c.denom_oms, c.datecontagio, c.resttime, c.casahospitalizado
                  FROM contagio c
                           join virus_variante vv on vv.denom_oms = c.denom_oms
-                 WHERE c.idpersona = $1`,
+                 WHERE c.idpersona = $1
+                 ORDER BY c.datecontagio`,
               [contagiadoPersona]) as QueryResult<Contagio>;
       return res.json(results.rows);
    } catch (e) {

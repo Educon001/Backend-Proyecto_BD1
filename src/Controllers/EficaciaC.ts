@@ -23,7 +23,8 @@ export async function getEficaciaVacuna(req: Request, res: Response) {
           query(`SELECT e.denom_oms, vi.clasification, vi.linaje, e.percentage
                  FROM eficacia e 
                           join virus_variante vi on e.denom_oms = vi.denom_oms 
-                 WHERE e.codevacuna = $1`,
+                 WHERE e.codevacuna = $1
+                 ORDER BY e.denom_oms`,
               [eficaciaCodeVacuna]) as QueryResult<Eficacia>;
       return res.json(results.rows);
    } catch (e) {

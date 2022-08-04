@@ -7,7 +7,8 @@ import {Request, Response} from 'express';
 export async function getPersonas(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                      FROM Persona`) as QueryResult<Persona>;
+                                      FROM Persona
+                                      ORDER BY id`) as QueryResult<Persona>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -20,7 +21,8 @@ export async function getPersonalSalud(req: Request, res: Response) {
       let results = await db().query(`SELECT P.*, PS.Email, PS.type
                                       FROM Persona P
                                                JOIN Personal_Salud PS
-                                                    ON P.ID = PS.ID_Persona`) as QueryResult<PersonalSalud>;
+                                                    ON P.ID = PS.ID_Persona
+                                      ORDER BY p.id`) as QueryResult<PersonalSalud>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
@@ -33,7 +35,8 @@ export async function getPacientes(req: Request, res: Response) {
       let results = await db().query(`SELECT P.*
                                       FROM Persona P
                                                JOIN Paciente PA
-                                                    ON P.ID = PA.ID_Persona`) as QueryResult<PersonalSalud>;
+                                                    ON P.ID = PA.ID_Persona
+                                      ORDER BY p.id`) as QueryResult<PersonalSalud>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);

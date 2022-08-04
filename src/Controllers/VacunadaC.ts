@@ -8,7 +8,8 @@ import {Request, Response} from 'express';
 export async function getVacunados(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM vacunada`) as QueryResult<Vacunada>;
+                                    FROM vacunada
+                                    ORDER BY idpersona,datevacuna`) as QueryResult<Vacunada>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);

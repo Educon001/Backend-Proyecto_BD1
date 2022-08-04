@@ -24,7 +24,8 @@ export async function getRequierePaciente(req: Request, res: Response) {
           query(`SELECT r.codetratamiento, t.description, r.date, r.estado
                  FROM requiere r
                           join tratamiento t on t.code = r.codetratamiento
-                 WHERE idpaciente = $1`,
+                 WHERE idpaciente = $1
+                 ORDER BY r.date`,
               [requierePaciente]) as QueryResult<Requiere>;
       return res.json(results.rows);
    } catch (e) {

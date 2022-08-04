@@ -23,7 +23,8 @@ export async function getHospitalizadoPersona(req: Request, res: Response) {
           query(`SELECT h.codecentroh, cs.name, h.datehospitalizado 
                  FROM hospitalizado h 
                       join centro_salud cs on h.codecentroh = cs.code 
-                 WHERE h.idpaciente = $1`,
+                 WHERE h.idpaciente = $1
+                 ORDER BY h.datehospitalizado`,
               [hospitalizadoPersona]) as QueryResult<Hospitalizado>;
       return res.json(results.rows);
    } catch (e) {

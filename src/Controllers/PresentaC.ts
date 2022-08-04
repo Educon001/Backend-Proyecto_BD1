@@ -23,7 +23,8 @@ export async function getPresentaVacuna(req: Request, res: Response) {
           query(`SELECT p.codesintoma, si.description
                  FROM presenta p
                           join sintoma_efecto si on si.code = p.codesintoma
-                 WHERE p.codevacuna = $1`,
+                 WHERE p.codevacuna = $1
+                 ORDER BY p.codesintoma`,
               [presentaVacuna]) as QueryResult<Presenta>;
       return res.json(results.rows);
    } catch (e) {

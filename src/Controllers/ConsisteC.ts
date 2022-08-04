@@ -28,7 +28,8 @@ export async function getConsisteTratamiento(req: Request, res: Response) {
                                              c.Dosis
                                       FROM consiste c
                                                join medicamento m on m.code = c.codemedicamento
-                                      WHERE c.codetratamiento = $1`,
+                                      WHERE c.codetratamiento = $1
+                                      ORDER BY c.codemedicamento`,
           [parseInt(consisteTratamiento)]) as QueryResult<Consiste>;
       return res.json(results.rows);
    } catch (e) {

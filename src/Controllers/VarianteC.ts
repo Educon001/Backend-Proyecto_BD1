@@ -7,7 +7,8 @@ import {Request, Response} from 'express';
 export async function getVariante(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM virus_variante`) as QueryResult<Variante>;
+                                    FROM virus_variante
+                                    ORDER BY denom_oms,origin_year,origin_month`) as QueryResult<Variante>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);

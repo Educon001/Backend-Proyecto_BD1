@@ -7,7 +7,8 @@ import {Request, Response} from 'express';
 export async function getMunicipios(req: Request, res: Response) {
    try {
       let results = await db().query(`SELECT *
-                                    FROM Municipio`) as QueryResult<Municipio>;
+                                    FROM Municipio
+                                    ORDER BY codeestado,code`) as QueryResult<Municipio>;
       return res.json(results.rows);
    } catch (e) {
       console.error(e);
